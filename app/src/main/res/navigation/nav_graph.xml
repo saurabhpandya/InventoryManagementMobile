@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.fidato.inventorymanagement.ui.main.category.CategoryFragment"
+        android:name="com.fidato.inventorymngmnt.ui.main.master.fragment.CategoryFragment"
         android:label="@string/fragment_category"
         tools:layout="@layout/fragment_category" />
 </navigation>
