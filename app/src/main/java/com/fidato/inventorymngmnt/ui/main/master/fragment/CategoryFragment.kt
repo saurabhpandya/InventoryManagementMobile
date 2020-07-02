@@ -5,11 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fidato.inventorymngmnt.base.BaseFragment
 import com.fidato.inventorymngmnt.base.ViewModelFactory
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.model.master.Category
@@ -20,7 +20,7 @@ import com.fidato.inventorymngmnt.ui.main.master.viewmodel.CategoryViewModel
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 import com.fidato.inventorymngmnt.utility.Status
 
-class CategoryFragment : Fragment(), OnItemClickListner {
+class CategoryFragment : BaseFragment(), OnItemClickListner {
 
     private val TAG: String = CategoryFragment::class.java.canonicalName.toString()
 
