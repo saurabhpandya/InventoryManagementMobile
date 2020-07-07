@@ -22,12 +22,15 @@ class ApiConstants {
 
         const val ENDPOINT_MASTER_SUB_CATEGORY = "${API_V1_MASTER}/subCategory"
         const val ENDPOINT_SUB_CATEGORY_GET = "$ENDPOINT_MASTER_SUB_CATEGORY/{id}"
+        const val ENDPOINT_SUB_CATEGORY_BY_CAT_ID = "$ENDPOINT_MASTER_SUB_CATEGORY/category/{catId}"
+        const val ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID = "$ENDPOINT_MASTER_SUB_CATEGORY/{catId}/{subCatId}"
         const val ENDPOINT_SUB_CATEGORY_SAVE = "$ENDPOINT_MASTER_SUB_CATEGORY/saveSubCategory"
         const val ENDPOINT_SUB_CATEGORY_UPDATE = "$ENDPOINT_MASTER_SUB_CATEGORY/updateSubCategory"
         const val ENDPOINT_SUB_CATEGORY_DELETE = "$ENDPOINT_MASTER_SUB_CATEGORY/deleteSubCategory"
 
         const val ENDPOINT_MASTER_PRODUCT = "${API_V1_MASTER}/product"
         const val ENDPOINT_PRODUCT_GET = "$ENDPOINT_MASTER_PRODUCT/{id}"
+        const val ENDPOINT_PRODUCT_BY_SUBCAT_ID = "$ENDPOINT_MASTER_PRODUCT/subCat/{subCatId}"
         const val ENDPOINT_PRODUCT_SAVE = "$ENDPOINT_MASTER_PRODUCT/saveProduct"
         const val ENDPOINT_PRODUCT_UPDATE = "$ENDPOINT_MASTER_PRODUCT/updateProduct"
         const val ENDPOINT_PRODUCT_DELETE = "$ENDPOINT_MASTER_PRODUCT/deleteProduct"

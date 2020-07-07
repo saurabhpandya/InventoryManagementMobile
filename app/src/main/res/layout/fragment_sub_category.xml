@@ -7,17 +7,17 @@
 
         <variable
             name="vm"
-            type="com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel" />
+            type="com.fidato.inventorymngmnt.ui.master.viewmodel.SubCategoryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.master.fragment.CategoryFragment">
+        tools:context=".ui.master.fragment.SubCategoryFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcyclrvw_categories"
+            android:id="@+id/rcyclrvw_sub_categories"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,22 +1,27 @@
-package com.fidato.inventorymngmnt.ui.main.master.fragment
+package com.fidato.inventorymngmnt.ui.master.fragment
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseFragment
 import com.fidato.inventorymngmnt.base.ViewModelFactory
+import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_ID
+import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_NAME
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.databinding.FragmentCategoryBinding
 import com.fidato.inventorymngmnt.networking.RetrofitClient
-import com.fidato.inventorymngmnt.ui.main.master.adapter.CategoryAdapter
-import com.fidato.inventorymngmnt.ui.main.master.viewmodel.CategoryViewModel
+import com.fidato.inventorymngmnt.ui.master.adapter.CategoryAdapter
+import com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 import com.fidato.inventorymngmnt.utility.Status
 
@@ -100,6 +105,13 @@ class CategoryFragment : BaseFragment(), OnItemClickListner {
 
     override fun onItemClickListner(position: Int) {
         Log.d(TAG, "Category : ${viewModel.arylstCategory.get(position).name}")
-    }
+        val category = viewModel.arylstCategory[position]
 
+        var bundle = bundleOf(
+            BUNDLE_CAT_ID to category.id,
+            BUNDLE_CAT_NAME to category.name
+        )
+        view?.findNavController()
+            ?.navigate(R.id.action_categoryFragment_to_subCategoryFragment, bundle)
+    }
 }

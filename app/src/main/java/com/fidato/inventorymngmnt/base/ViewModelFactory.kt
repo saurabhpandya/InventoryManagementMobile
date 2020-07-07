@@ -5,7 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
-import com.fidato.inventorymngmnt.ui.main.master.viewmodel.CategoryViewModel
+import com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel
+import com.fidato.inventorymngmnt.ui.master.viewmodel.SubCategoryViewModel
+import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductDetailsViewModel
+import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductViewModel
 
 class ViewModelFactory<T>(private val dataProvider: T, private val application: Application) :
     ViewModelProvider.AndroidViewModelFactory(application) {
@@ -17,7 +20,30 @@ class ViewModelFactory<T>(private val dataProvider: T, private val application: 
                     dataProvider as MasterNetworkDataProvider
                 )
             ) as T
+        } else if (modelClass.isAssignableFrom(SubCategoryViewModel::class.java)) {
+            return SubCategoryViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(ProductViewModel::class.java)) {
+            return ProductViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(ProductDetailsViewModel::class.java)) {
+            return ProductDetailsViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
         }
+
+
 
         throw IllegalArgumentException("Unknown class name")
     }

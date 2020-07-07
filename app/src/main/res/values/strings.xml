@@ -4,5 +4,6 @@
     <string name="fragment_category">Category</string>
     <string name="fragment_sub_category">Sub Category</string>
     <string name="fragment_product">Products</string>
+    <string name="fragment_product_detail">Product Detail</string>
 
 </resources>

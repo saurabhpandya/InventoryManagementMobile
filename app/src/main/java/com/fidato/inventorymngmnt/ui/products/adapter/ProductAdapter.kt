@@ -1,27 +1,27 @@
-package com.fidato.inventorymngmnt.ui.main.master.adapter
+package com.fidato.inventorymngmnt.ui.products.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
-import com.fidato.inventorymngmnt.data.model.master.Category
-import com.fidato.inventorymngmnt.databinding.RawCategoryBinding
+import com.fidato.inventorymngmnt.data.model.master.Product
+import com.fidato.inventorymngmnt.databinding.RawProductBinding
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 
-class CategoryAdapter(
-    var arylstCategory: ArrayList<Category>,
+class ProductAdapter(
+    var arylstProduct: ArrayList<Product>,
     val onItemClickListner: OnItemClickListner
 ) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val binding: RawCategoryBinding = DataBindingUtil.inflate(
+        val binding: RawProductBinding = DataBindingUtil.inflate(
             layoutInflater,
-            R.layout.raw_category,
+            R.layout.raw_product,
             parent,
             false
         )
@@ -29,31 +29,30 @@ class CategoryAdapter(
     }
 
     override fun getItemCount(): Int {
-        return arylstCategory.size
+        return arylstProduct.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(arylstCategory.get(position))
+        holder.bindItems(arylstProduct.get(position))
         holder.itemView.setOnClickListener {
             onItemClickListner.onItemClickListner(position)
         }
     }
 
-    fun setCategory(arylstCategory: ArrayList<Category>) {
-        this.arylstCategory = arylstCategory
+    fun setProduct(arylstProduct: ArrayList<Product>) {
+        this.arylstProduct = arylstProduct
         notifyDataSetChanged()
     }
 
-    fun addCategory(arylstCategory: ArrayList<Category>) {
-        this.arylstCategory.addAll(arylstCategory)
+    fun addProduct(arylstProduct: ArrayList<Product>) {
+        this.arylstProduct.addAll(arylstProduct)
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val binding: RawCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindItems(category: Category) {
-            binding.category = category
+    class ViewHolder(val binding: RawProductBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bindItems(product: Product) {
+            binding.product = product
             binding.executePendingBindings()
         }
     }
-
 }

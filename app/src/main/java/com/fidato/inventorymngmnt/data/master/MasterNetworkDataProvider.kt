@@ -1,6 +1,9 @@
 package com.fidato.inventorymngmnt.data.master
 
+import com.fidato.inventorymngmnt.data.model.BaseResponse
+import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.Category
+import com.fidato.inventorymngmnt.data.model.master.Product
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
 
 class MasterNetworkDataProvider(private val masterService: MasterService) {
@@ -24,6 +27,11 @@ class MasterNetworkDataProvider(private val masterService: MasterService) {
 
     suspend fun getSubCategoryById(id: Int) = masterService.getSubCategoryById(id)
 
+    suspend fun getSubCategoryByCatId(catId: Int) = masterService.getSubCategoryByCatId(catId)
+
+    suspend fun getSubCategoryBySubCatId(catId: Int, subCatId: Int) =
+        masterService.getSubCategoryBySubCatId(catId, subCatId)
+
     suspend fun saveSubCategory(saveSubCatRequest: SubCategory) =
         masterService.saveSubCategory(saveSubCatRequest)
 
@@ -32,5 +40,23 @@ class MasterNetworkDataProvider(private val masterService: MasterService) {
 
     suspend fun deleteSubCategory(deleteSubCatRequest: SubCategory) =
         masterService.deleteSubCategory(deleteSubCatRequest)
+
+    // Product
+    suspend fun getAllProducts(): BaseResponse<ArrayList<Product>> = masterService.getAllProducts()
+
+    suspend fun getProductById(id: Int): BaseResponse<Product> =
+        masterService.getProductById(id)
+
+    suspend fun getProductBySubCatId(subCatId: Int): BaseResponse<ArrayList<Product>> =
+        masterService.getProductBySubCatId(subCatId)
+
+    suspend fun saveProduct(saveProductRequest: Product): BaseResponse<CommonResponse> =
+        masterService.saveProduct(saveProductRequest)
+
+    suspend fun deleteProduct(deleteProductRequest: Product): BaseResponse<CommonResponse> =
+        masterService.deleteProduct(deleteProductRequest)
+
+    suspend fun updateProduct(updateProductRequest: Product): BaseResponse<CommonResponse> =
+        masterService.updateProduct(updateProductRequest)
 
 }

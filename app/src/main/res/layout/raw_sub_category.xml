@@ -4,8 +4,8 @@
     <data>
 
         <variable
-            name="category"
-            type="com.fidato.inventorymngmnt.data.model.master.Category" />
+            name="subCategory"
+            type="com.fidato.inventorymngmnt.data.model.master.SubCategory" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/_10sdp"
-            android:text="@{category.name}"
+            android:text="@{subCategory.name}"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

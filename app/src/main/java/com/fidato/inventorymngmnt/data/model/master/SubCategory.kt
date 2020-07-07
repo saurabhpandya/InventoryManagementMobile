@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class SubCategory(
     @JsonProperty("id")
-    private val id: Int,
-    private val name: String,
+    val id: Int,
+    @JsonProperty("name")
+    val name: String,
     @JsonProperty("cat_id")
-    private val catId: Int,
+    val catId: Int?,
     @JsonProperty("sub_cat_id")
-    private val subCatId: Int
+    val subCatId: Int?
 )

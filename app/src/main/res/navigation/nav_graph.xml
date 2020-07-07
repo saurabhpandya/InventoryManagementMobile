@@ -7,7 +7,31 @@
 
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.fidato.inventorymngmnt.ui.main.master.fragment.CategoryFragment"
+        android:name="com.fidato.inventorymngmnt.ui.master.fragment.CategoryFragment"
         android:label="@string/fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_subCategoryFragment"
+            app:destination="@id/subCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subCategoryFragment"
+        android:name="com.fidato.inventorymngmnt.ui.master.fragment.SubCategoryFragment"
+        android:label="@string/fragment_sub_category">
+        <action
+            android:id="@+id/action_subCategoryFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.fidato.inventorymngmnt.ui.products.fragments.ProductsFragment"
+        android:label="@string/fragment_product">
+        <action
+            android:id="@+id/action_productsFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.fidato.inventorymngmnt.ui.products.fragments.ProductDetailFragment"
+        android:label="@string/fragment_product_detail" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.fidato.inventorymngmnt.ui.main.master.viewmodel
+package com.fidato.inventorymngmnt.ui.master.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.liveData
@@ -6,7 +6,7 @@ import com.fidato.inventorymngmnt.base.BaseViewModel
 import com.fidato.inventorymngmnt.constants.Constants.Companion.something_wrong
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
-import com.fidato.inventorymngmnt.ui.main.master.adapter.CategoryAdapter
+import com.fidato.inventorymngmnt.ui.master.adapter.CategoryAdapter
 import com.fidato.inventorymngmnt.utility.Resource
 import com.fidato.inventorymngmnt.utility.isNetworkAvailable
 import kotlinx.coroutines.Dispatchers
