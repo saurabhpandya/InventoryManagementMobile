@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/categoryFragment">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
         android:id="@+id/categoryFragment"
@@ -34,4 +34,12 @@
         android:id="@+id/productDetailFragment"
         android:name="com.fidato.inventorymngmnt.ui.products.fragments.ProductDetailFragment"
         android:label="@string/fragment_product_detail" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.fidato.inventorymngmnt.ui.dashboard.DashboardFragment"
+        android:label="@string/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
 </navigation>

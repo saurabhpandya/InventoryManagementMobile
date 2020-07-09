@@ -5,12 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseFragment
 import com.fidato.inventorymngmnt.base.ViewModelFactory
@@ -24,6 +27,8 @@ import com.fidato.inventorymngmnt.ui.master.adapter.CategoryAdapter
 import com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 import com.fidato.inventorymngmnt.utility.Status
+import com.fidato.inventorymngmnt.utility.SwipeHelper
+
 
 class CategoryFragment : BaseFragment(), OnItemClickListner {
 
@@ -70,7 +75,41 @@ class CategoryFragment : BaseFragment(), OnItemClickListner {
             )
         )
         binding.rcyclrvwCategories.setHasFixedSize(true)
+
         viewModel.categoryAdapter = CategoryAdapter(viewModel.arylstCategory, this)
+        val swipeHelper = object : SwipeHelper(activity) {
+            override fun instantiateUnderlayButton(
+                viewHolder: RecyclerView.ViewHolder?,
+                underlayButtons: MutableList<UnderlayButton>
+            ) {
+
+                underlayButtons.add(
+                    SwipeHelper.UnderlayButton("Edit",
+                        0,
+                        ContextCompat.getColor(activity!!, R.color.btn_edit),
+                        object : UnderlayButtonClickListener {
+                            override fun onClick(pos: Int) {
+
+                            }
+                        })
+                )
+
+                underlayButtons.add(
+                    SwipeHelper.UnderlayButton("Delete",
+                        0,
+                        ContextCompat.getColor(activity!!, R.color.btn_delete),
+                        object : UnderlayButtonClickListener {
+                            override fun onClick(pos: Int) {
+
+                            }
+                        })
+                )
+
+            }
+
+        }
+//        ItemTouchHelper(SwipeToDeleteCallback(requireActivity(),viewModel.categoryAdapter))
+        swipeHelper.attachToRecyclerView(binding.rcyclrvwCategories)
         binding.rcyclrvwCategories.adapter = viewModel.categoryAdapter
     }
 
@@ -93,10 +132,12 @@ class CategoryFragment : BaseFragment(), OnItemClickListner {
                         binding.rcyclrvwCategories.visibility = View.GONE
                         binding.noData.visibility = View.VISIBLE
                     }
-
                 }
                 Status.ERROR -> {
                     binding.prgrs.visibility = View.GONE
+                    binding.noData.visibility = View.VISIBLE
+                    val txtvwNoData = binding.noData.findViewById<TextView>(R.id.txtvw_no_data)
+                    txtvwNoData.text = it.message
                     Log.d(TAG, "getCategory::${it.status}::${it.message}")
                 }
             }
@@ -115,3 +156,4 @@ class CategoryFragment : BaseFragment(), OnItemClickListner {
             ?.navigate(R.id.action_categoryFragment_to_subCategoryFragment, bundle)
     }
 }
+

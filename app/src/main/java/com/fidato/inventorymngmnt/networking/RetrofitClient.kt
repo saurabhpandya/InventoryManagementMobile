@@ -12,7 +12,7 @@ object RetrofitClient {
     private const val BASE_URL = "http://192.168.1.8:8080/"
 
     var accessToken =
-        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYXVyYWJocGFuZHlhN0BnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9VU0VSIn0seyJhdXRob3JpdHkiOiJ1c2VyOnJlYWQifSx7ImF1dGhvcml0eSI6InBvc3Q6cmVhZCJ9XSwiaWF0IjoxNTkzMDExMDAwLCJleHAiOjE1OTQxNDY2MDB9.qmTkRuBGI-4A5yALwjV-1MLdvIW8ZEsetexqfmk7PeFw8ZimNRToFBjD3U8IvTdOHEgkxvIdEzANd17hos3xtw"
+        "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzYXVyYWJocGFuZHlhN0BnbWFpbC5jb20iLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoicG9zdDp3cml0ZSJ9LHsiYXV0aG9yaXR5IjoidXNlcjp3cml0ZSJ9LHsiYXV0aG9yaXR5IjoidXNlcjpyZWFkIn0seyJhdXRob3JpdHkiOiJwb3N0OnJlYWQifSx7ImF1dGhvcml0eSI6IlJPTEVfQURNSU4ifV0sImlhdCI6MTU5NDE5MjE2MiwiZXhwIjoxNTk1MzU2MjAwfQ.k3W6n9wWUioQmCWSkTEhqWTzx0YkVtfxTfV2cvfeZvrR6KTiAith-mmH5pcia_B4fwZK0w9LHYslPaxm2lXihQ"
 
     val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 

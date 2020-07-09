@@ -8,4 +8,8 @@
 
     <color name="background">#EEEEEE</color>
     <color name="rcyclrvw_background">#DDDDDD</color>
+
+    <color name="btn_delete">#FF3C30</color>
+    <color name="btn_edit">#FFAC30</color>
+
 </resources>

@@ -4,7 +4,12 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.widget.Toast
 import com.fidato.inventorymngmnt.constants.Constants.Companion.no_internet
+
+fun Context.showToast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
 
 val Context.isNetworkAvailable: Pair<Boolean, String>
     get() {

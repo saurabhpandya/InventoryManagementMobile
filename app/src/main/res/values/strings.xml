@@ -5,5 +5,13 @@
     <string name="fragment_sub_category">Sub Category</string>
     <string name="fragment_product">Products</string>
     <string name="fragment_product_detail">Product Detail</string>
+    <string name="fragment_dashboard">Dashboard</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_products">Products</string>
+    <string name="nav_customers">Customers</string>
+    <string name="nav_orders">Orders</string>
+
+    <string name="lbl_delete">Delete</string>
 
 </resources>
