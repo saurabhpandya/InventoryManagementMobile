@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BaseResponse<T>(
     @JsonProperty("data")
-    val data: T?,
+    val data: T? = null,
     @JsonProperty("errorResponse")
-    val error: ErrorResponse?
+    val error: ErrorResponse? = null
 )

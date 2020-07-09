@@ -23,9 +23,7 @@ import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.data.model.master.Product
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface MasterService {
 
@@ -36,13 +34,13 @@ interface MasterService {
     @GET(ENDPOINT_CATEGORY_GET)
     suspend fun getCategoryById(@Path("id") id: Int): BaseResponse<Category>
 
-    @GET(ENDPOINT_CATEGORY_SAVE)
+    @POST(ENDPOINT_CATEGORY_SAVE)
     suspend fun saveCategory(@Body saveCategoryRequest: Category): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_CATEGORY_DELETE)
+    @POST(ENDPOINT_CATEGORY_DELETE)
     suspend fun deleteCategory(@Body deleteCategoryRequest: Category): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_CATEGORY_UPDATE)
+    @POST(ENDPOINT_CATEGORY_UPDATE)
     suspend fun updateCategory(@Body updateCategoryRequest: Category): BaseResponse<CommonResponse>
 
     // Sub Category
@@ -53,7 +51,7 @@ interface MasterService {
     suspend fun getSubCategoryById(@Path("id") id: Int): BaseResponse<SubCategory>
 
     @GET(ENDPOINT_SUB_CATEGORY_BY_CAT_ID)
-    suspend fun getSubCategoryByCatId(@Path("catId") catId: Int): BaseResponse<ArrayList<SubCategory>>
+    suspend fun getSubCategoryByCatId(@Path("catId") catId: String): BaseResponse<ArrayList<SubCategory>>
 
     @GET(ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID)
     suspend fun getSubCategoryBySubCatId(

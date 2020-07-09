@@ -1,11 +1,30 @@
 package com.fidato.inventorymngmnt.utility
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.fidato.inventorymngmnt.constants.Constants.Companion.no_internet
+
+fun Activity.hideKeyboard() {
+    try {
+        val inputManager =
+            this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val currentFocusedView = this.currentFocus
+        if (currentFocusedView != null) {
+            inputManager.hideSoftInputFromWindow(
+                currentFocusedView.windowToken,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
+
+}
 
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

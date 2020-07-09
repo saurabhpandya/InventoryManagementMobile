@@ -35,5 +35,17 @@
             layout="@layout/progress_indicator"
             android:visibility="gone" />
 
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16ssp"
+            android:src="@drawable/fab_add"
+            app:fab_label="@string/title_fab_cat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

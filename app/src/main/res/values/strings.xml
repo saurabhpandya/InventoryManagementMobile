@@ -12,6 +12,18 @@
     <string name="nav_customers">Customers</string>
     <string name="nav_orders">Orders</string>
 
+    <string name="lbl_cat_id">Category Id</string>
+    <string name="lbl_cat_name">Category Name</string>
+
+    <string name="lbl_active">Active</string>
     <string name="lbl_delete">Delete</string>
+    <string name="lbl_block">Block</string>
+
+    <string name="title_edit_cat">Edit Category</string>
+    <string name="title_add_cat">Add Category</string>
+    <string name="title_fab_cat">Add/Edit Category</string>
+
+    <string name="btn_save">Save</string>
+    <string name="btn_update">Update</string>
 
 </resources>

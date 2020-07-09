@@ -78,7 +78,7 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner {
     }
 
     private fun getBundleData() {
-        viewModel.catId = arguments?.getInt(BUNDLE_CAT_ID, -1)!!
+        viewModel.catId = arguments?.getString(BUNDLE_CAT_ID, "")!!
         viewModel.catName = arguments?.getString(BUNDLE_CAT_NAME, "")!!
     }
 

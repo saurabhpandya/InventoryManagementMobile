@@ -24,7 +24,7 @@ class SubCategoryViewModel(
 
     lateinit var subCategoryAdapter: SubCategoryAdapter
 
-    var catId: Int = 0
+    var catId: String = ""
     var catName: String = ""
     var subCatId: Int = 0
 
@@ -32,7 +32,7 @@ class SubCategoryViewModel(
         arylstSubCategory = ArrayList<SubCategory>()
     }
 
-    fun getSubCategoryByCatId(catId: Int) = liveData(Dispatchers.IO) {
+    fun getSubCategoryByCatId(catId: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         val networkValidatorPair = context.isNetworkAvailable
         if (networkValidatorPair.first) {

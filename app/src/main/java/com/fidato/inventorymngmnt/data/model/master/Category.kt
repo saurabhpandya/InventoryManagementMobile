@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class Category(
     @JsonProperty("id")
-    val id: Int,
+    var id: String = "",
     @JsonProperty("name")
-    val name: String
+    var name: String = ""
 )

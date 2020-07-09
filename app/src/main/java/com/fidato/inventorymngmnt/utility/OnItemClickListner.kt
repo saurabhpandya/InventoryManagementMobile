@@ -7,3 +7,8 @@ interface OnItemClickListner {
 interface ProductVarientItemClickListner {
     fun onProductVariantClickListner(position: Int, isForSize: Boolean)
 }
+
+interface CategoryUnderlayButtonClickListner {
+    fun deleteUnderlayClicked(position: Int)
+    fun editUnderlayClicked(position: Int)
+}

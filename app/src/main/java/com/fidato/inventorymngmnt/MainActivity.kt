@@ -8,6 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.fidato.inventorymngmnt.databinding.MainActivityBinding
+import com.fidato.inventorymngmnt.utility.hideKeyboard
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,7 +42,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        viewModelStore.clear()
+        hideKeyboard()
         return findNavController(R.id.nav_host_fragment).navigateUp()
     }
 
+    override fun onBackPressed() {
+        viewModelStore.clear()
+        hideKeyboard()
+        super.onBackPressed()
+
+    }
 }

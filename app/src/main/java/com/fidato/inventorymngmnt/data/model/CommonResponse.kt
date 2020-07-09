@@ -6,5 +6,5 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CommonResponse(
     @JsonProperty("message")
-    private val message: String?
+    val message: String?
 )
