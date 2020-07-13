@@ -27,7 +27,7 @@ class MasterNetworkDataProvider(private val masterService: MasterService) {
 
     suspend fun getSubCategoryById(id: Int) = masterService.getSubCategoryById(id)
 
-    suspend fun getSubCategoryByCatId(catId: String) = masterService.getSubCategoryByCatId(catId)
+    suspend fun getSubCategoryByCatId(catId: Int) = masterService.getSubCategoryByCatId(catId)
 
     suspend fun getSubCategoryBySubCatId(catId: Int, subCatId: Int) =
         masterService.getSubCategoryBySubCatId(catId, subCatId)

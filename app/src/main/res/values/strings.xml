@@ -26,4 +26,11 @@
     <string name="btn_save">Save</string>
     <string name="btn_update">Update</string>
 
+    <string name="hint_select_cat">Select Category</string>
+    <string name="hint_select_sub_cat">Select SubCategory</string>
+
+    <string name="lbl_sub_cat">Sub Category</string>
+    <string name="title_edit_sub_cat">Edit Sub Category</string>
+    <string name="title_add_sub_cat">Add Sub Category</string>
+
 </resources>

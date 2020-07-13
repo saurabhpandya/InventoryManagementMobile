@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_subCategoryFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_subCategoryFragment_to_addEditSubCategoryFragment"
+            app:destination="@id/addEditSubCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/productsFragment"
@@ -48,4 +51,7 @@
     <fragment
         android:id="@+id/addEditCategoryFragment"
         android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditCategoryFragment" />
+    <fragment
+        android:id="@+id/addEditSubCategoryFragment"
+        android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditSubCategoryFragment" />
 </navigation>

@@ -23,7 +23,10 @@ import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.data.model.master.Product
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface MasterService {
 
@@ -51,7 +54,7 @@ interface MasterService {
     suspend fun getSubCategoryById(@Path("id") id: Int): BaseResponse<SubCategory>
 
     @GET(ENDPOINT_SUB_CATEGORY_BY_CAT_ID)
-    suspend fun getSubCategoryByCatId(@Path("catId") catId: String): BaseResponse<ArrayList<SubCategory>>
+    suspend fun getSubCategoryByCatId(@Path("catId") catId: Int): BaseResponse<ArrayList<SubCategory>>
 
     @GET(ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID)
     suspend fun getSubCategoryBySubCatId(
@@ -59,13 +62,13 @@ interface MasterService {
         @Path("subCatId") subCatId: Int
     ): BaseResponse<ArrayList<SubCategory>>
 
-    @GET(ENDPOINT_SUB_CATEGORY_SAVE)
+    @POST(ENDPOINT_SUB_CATEGORY_SAVE)
     suspend fun saveSubCategory(@Body saveSubCategoryRequest: SubCategory): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_SUB_CATEGORY_DELETE)
+    @POST(ENDPOINT_SUB_CATEGORY_DELETE)
     suspend fun deleteSubCategory(@Body deleteSubCategoryRequest: SubCategory): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_SUB_CATEGORY_UPDATE)
+    @POST(ENDPOINT_SUB_CATEGORY_UPDATE)
     suspend fun updateSubCategory(@Body updateSubCategoryRequest: SubCategory): BaseResponse<CommonResponse>
 
     // Product
@@ -78,13 +81,13 @@ interface MasterService {
     @GET(ENDPOINT_PRODUCT_BY_SUBCAT_ID)
     suspend fun getProductBySubCatId(@Path("subCatId") subCatId: Int): BaseResponse<ArrayList<Product>>
 
-    @GET(ENDPOINT_PRODUCT_SAVE)
+    @POST(ENDPOINT_PRODUCT_SAVE)
     suspend fun saveProduct(@Body saveProductRequest: Product): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_PRODUCT_DELETE)
+    @POST(ENDPOINT_PRODUCT_DELETE)
     suspend fun deleteProduct(@Body deleteProductRequest: Product): BaseResponse<CommonResponse>
 
-    @GET(ENDPOINT_PRODUCT_UPDATE)
+    @POST(ENDPOINT_PRODUCT_UPDATE)
     suspend fun updateProduct(@Body updateProductRequest: Product): BaseResponse<CommonResponse>
 
 

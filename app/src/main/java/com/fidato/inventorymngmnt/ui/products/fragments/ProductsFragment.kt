@@ -77,7 +77,10 @@ class ProductsFragment : BaseFragment(), OnItemClickListner {
     }
 
     private fun getBundleData() {
-        viewModel.subCatId = arguments?.getInt(BUNDLE_SUB_CAT_ID, -1)!!
+        if (arguments != null) {
+            viewModel.subCatId = requireArguments().getInt(BUNDLE_SUB_CAT_ID, -1)
+        }
+
     }
 
     private fun getData() {

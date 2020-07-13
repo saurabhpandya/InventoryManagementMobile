@@ -48,7 +48,7 @@ class AddEditCategoryViewModel(application: Application, val masterRepository: M
     fun setDataFromBundle(catBundle: Bundle?) {
         if (catBundle != null) {
             val catName = catBundle.getString(BUNDLE_CAT_NAME, "")
-            val catId = catBundle.getString(BUNDLE_CAT_ID, "")
+            val catId = catBundle.getInt(BUNDLE_CAT_ID, -1)
             setCategory(Category(catId, catName))
             isEdit = catBundle.getBoolean(BUNDLE_EDIT_CAT)
         }
@@ -106,7 +106,6 @@ class AddEditCategoryViewModel(application: Application, val masterRepository: M
             withContext(Dispatchers.Main) {
                 saveCatResponse.value = Resource.error(null, e.localizedMessage)
             }
-
         }
     }
 }

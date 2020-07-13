@@ -1,16 +1,19 @@
 package com.fidato.inventorymngmnt.data.model.master
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.Parcelize
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Parcelize
 data class SubCategory(
     @JsonProperty("id")
-    val id: Int,
+    var id: Int? = null,
     @JsonProperty("name")
-    val name: String,
+    var name: String = "",
     @JsonProperty("cat_id")
-    val catId: Int?,
+    var catId: Int = -1,
     @JsonProperty("sub_cat_id")
-    val subCatId: Int?
-)
+    var subCatId: Int? = null
+) : Parcelable

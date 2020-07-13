@@ -16,6 +16,7 @@ import com.fidato.inventorymngmnt.base.BaseFragment
 import com.fidato.inventorymngmnt.base.ViewModelFactory
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_ID
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_NAME
+import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_EDIT_SUB_CAT
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_SUB_CAT_ID
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
@@ -23,10 +24,13 @@ import com.fidato.inventorymngmnt.databinding.FragmentSubCategoryBinding
 import com.fidato.inventorymngmnt.networking.RetrofitClient
 import com.fidato.inventorymngmnt.ui.master.adapter.SubCategoryAdapter
 import com.fidato.inventorymngmnt.ui.master.viewmodel.SubCategoryViewModel
+import com.fidato.inventorymngmnt.utility.CategoryUnderlayButtonClickListner
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 import com.fidato.inventorymngmnt.utility.Status
+import com.fidato.inventorymngmnt.utility.showToast
 
-class SubCategoryFragment : BaseFragment(), OnItemClickListner {
+class SubCategoryFragment : BaseFragment(), OnItemClickListner, View.OnClickListener,
+    CategoryUnderlayButtonClickListner {
 
     private val TAG: String = SubCategoryFragment::class.java.canonicalName.toString()
 
@@ -45,9 +49,11 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
+        setListener()
         setupRecyclerView()
         getBundleData()
         getData()
+        observeDeleteSubCategory()
     }
 
     private fun setupViewModel() {
@@ -63,6 +69,10 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner {
         binding.vm = viewModel
     }
 
+    private fun setListener() {
+        binding.fabAddSubCat.setOnClickListener(this)
+    }
+
     private fun setupRecyclerView() {
         viewModel.arylstSubCategory = ArrayList<SubCategory>()
         binding.rcyclrvwSubCategories.layoutManager = LinearLayoutManager(activity)
@@ -73,12 +83,13 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner {
             )
         )
         binding.rcyclrvwSubCategories.setHasFixedSize(true)
+        viewModel.getSwipeHelper(this).attachToRecyclerView(binding.rcyclrvwSubCategories)
         viewModel.subCategoryAdapter = SubCategoryAdapter(viewModel.arylstSubCategory, this)
         binding.rcyclrvwSubCategories.adapter = viewModel.subCategoryAdapter
     }
 
     private fun getBundleData() {
-        viewModel.catId = arguments?.getString(BUNDLE_CAT_ID, "")!!
+        viewModel.catId = arguments?.getInt(BUNDLE_CAT_ID, -1)!!
         viewModel.catName = arguments?.getString(BUNDLE_CAT_NAME, "")!!
     }
 
@@ -138,23 +149,90 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner {
         })
     }
 
+    private fun navigateTo(subCatNavigation: SubCategoryNavigation, bundle: Bundle?) {
+        when (subCatNavigation) {
+            SubCategoryNavigation.ADD_EDIT_SUB_CATEGORY -> {
+                view?.findNavController()
+                    ?.navigate(
+                        R.id.action_subCategoryFragment_to_addEditSubCategoryFragment,
+                        bundle
+                    )
+            }
+            SubCategoryNavigation.SUB_CATEGORY -> {
+            }
+            SubCategoryNavigation.PRODUCT -> {
+                view?.findNavController()
+                    ?.navigate(R.id.action_subCategoryFragment_to_productsFragment, bundle)
+            }
+        }
+    }
+
     private fun navigateToProductList() {
         var bundle = bundleOf(
             BUNDLE_SUB_CAT_ID to viewModel.subCatId
         )
-        view?.findNavController()
-            ?.navigate(R.id.action_subCategoryFragment_to_productsFragment, bundle)
+        navigateTo(SubCategoryNavigation.PRODUCT, bundle)
+    }
+
+    private fun observeDeleteSubCategory() {
+        viewModel.deleteSubCatResponse.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                Status.LOADING -> {
+                    binding.prgrs.visibility = View.VISIBLE
+                    Log.d(TAG, "deleteSubCategory::${it.status}")
+                }
+                Status.SUCCESS -> {
+                    binding.prgrs.visibility = View.GONE
+                    Log.d(TAG, "deleteSubCategory::${it.status}::${it.data}")
+                    val deleteSubCatResponse = it.data
+                    if (deleteSubCatResponse != null) {
+                        context?.showToast(deleteSubCatResponse.message!!)
+                        getData()
+                    }
+                }
+                Status.ERROR -> {
+                    binding.prgrs.visibility = View.GONE
+                    Log.d(TAG, "deleteSubCategory::${it.status}::${it.message}")
+
+                }
+            }
+        })
     }
 
     override fun onItemClickListner(position: Int) {
         val subCategory = viewModel.arylstSubCategory.get(position)
         Log.d(TAG, "Sub Category : ${subCategory}")
         if (subCategory.subCatId != null) {
-            getSubCategories(subCategory.catId!!, subCategory.id)
+            getSubCategories(subCategory.catId, subCategory.id!!)
         } else {
             Log.d(TAG, "End of sub category")
         }
 
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.fab_add_sub_cat -> {
+                navigateTo(SubCategoryNavigation.ADD_EDIT_SUB_CATEGORY, null)
+            }
+        }
+    }
+
+    override fun deleteUnderlayClicked(position: Int) {
+        val subCategory = viewModel.arylstSubCategory[position]
+        Log.d(TAG, "Delete Underlay Button clicked for : ${subCategory.name}")
+        viewModel.deleteSubCategory(subCategory)
+    }
+
+    override fun editUnderlayClicked(position: Int) {
+        val editSubCatBundle = viewModel.getSubCategoryBundle(position)
+        editSubCatBundle.putBoolean(BUNDLE_EDIT_SUB_CAT, true)
+        navigateTo(SubCategoryNavigation.ADD_EDIT_SUB_CATEGORY, editSubCatBundle)
+    }
+}
+
+enum class SubCategoryNavigation {
+    SUB_CATEGORY,
+    PRODUCT,
+    ADD_EDIT_SUB_CATEGORY
 }

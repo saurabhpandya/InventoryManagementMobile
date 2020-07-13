@@ -7,6 +7,7 @@ import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
 import com.fidato.inventorymngmnt.ui.dashboard.viewmodel.DashboardViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditCategoryViewModel
+import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditSubCategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.SubCategoryViewModel
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductDetailsViewModel
@@ -16,21 +17,28 @@ class ViewModelFactory<T>(private val dataProvider: T, private val application: 
     ViewModelProvider.AndroidViewModelFactory(application) {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        if (modelClass.isAssignableFrom(AddEditCategoryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(AddEditSubCategoryViewModel::class.java)) {
+            return AddEditSubCategoryViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(AddEditCategoryViewModel::class.java)) {
             return AddEditCategoryViewModel(
                 application,
                 MasterRepository(
                     dataProvider as MasterNetworkDataProvider
                 )
             ) as T
-        }else if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
             return DashboardViewModel(
                 application,
                 MasterRepository(
                     dataProvider as MasterNetworkDataProvider
                 )
             ) as T
-        }else if (modelClass.isAssignableFrom(CategoryViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(CategoryViewModel::class.java)) {
             return CategoryViewModel(
                 application,
                 MasterRepository(
@@ -59,8 +67,6 @@ class ViewModelFactory<T>(private val dataProvider: T, private val application: 
                 )
             ) as T
         }
-
-
 
         throw IllegalArgumentException("Unknown class name")
     }

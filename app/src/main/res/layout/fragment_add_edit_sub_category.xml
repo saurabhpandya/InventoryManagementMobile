@@ -6,11 +6,11 @@
 
         <variable
             name="vm"
-            type="com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditCategoryViewModel" />
+            type="com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditSubCategoryViewModel" />
 
         <variable
-            name="cateogry"
-            type="com.fidato.inventorymngmnt.data.model.master.Category" />
+            name="newSubCategory"
+            type="com.fidato.inventorymngmnt.data.model.master.SubCategory" />
 
     </data>
 
@@ -20,12 +20,12 @@
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/cnstrntlyt_root_add_update_cat"
+            android:id="@+id/cnstrntlyt_root_add_udpate_subcat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cnstrntlyt_main_add_update_cat"
+                android:id="@+id/cnstrntlyt_main_add_udpate_subcat"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:padding="@dimen/_16sdp"
@@ -35,53 +35,81 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_cat_id"
+                    android:id="@+id/til_subcat_sub_category_new"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_50sdp"
-                    android:hint="@string/lbl_cat_id"
-                    app:error="@{vm.errCatId}"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:hint="@string/lbl_sub_cat"
+                    app:error="@{vm.errNewSubCat}"
                     app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tiedttxt_cat_id"
+                        android:id="@+id/tiedttxt_subcat_sub_category_new"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={newSubCategory.name}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_subcat_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_select_cat"
+                    app:error="@{vm.errCat}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/til_subcat_sub_category_new">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_subcat_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
                         android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_cat_name"
+                    android:id="@+id/til_subcat_sub_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/lbl_cat_name"
-                    app:error="@{vm.errCatName}"
+                    android:hint="@string/hint_select_sub_cat"
+                    app:error="@{vm.errSubCat}"
                     app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/til_cat_id">
+                    app:layout_constraintTop_toBottomOf="@id/til_subcat_category">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tiedttxt_cat_name"
+                        android:id="@+id/tiedttxt_subcat_sub_category"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:singleLine="true"
-                        android:text="@={cateogry.name}" />
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="true"
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_save_cat"
+                    android:id="@+id/btn_save_sub_cat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:onClick="@{() -> vm.validateCatData()}"
+                    android:onClick="@{()-> vm.validateNewSubCategory()}"
                     android:text="@string/btn_save"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <include
@@ -93,9 +121,6 @@
                 android:id="@+id/prgrs"
                 layout="@layout/progress_indicator"
                 android:visibility="gone" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </ScrollView>
 </layout>

@@ -29,7 +29,7 @@ class MasterRepository(private val masterDataProvider: MasterNetworkDataProvider
     suspend fun getSubCategoryById(id: Int) =
         masterDataProvider.getSubCategoryById(id)
 
-    suspend fun getSubCategoryByCatId(catId: String) =
+    suspend fun getSubCategoryByCatId(catId: Int) =
         masterDataProvider.getSubCategoryByCatId(catId)
 
     suspend fun getSubCategoryBySubCatId(catId: Int, subCatId: Int) =
