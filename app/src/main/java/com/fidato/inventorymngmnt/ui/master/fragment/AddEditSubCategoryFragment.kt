@@ -165,7 +165,7 @@ class AddEditSubCategoryFragment : BaseFragment(), View.OnClickListener {
                     if (!categoryList.isNullOrEmpty()) {
                         val category = categoryList[viewModel.selCatIndex]
                         binding.tiedttxtSubcatCategory.setText(category.name)
-                        getSubCategories(category.id!!, -1)
+                        getSubCategories(category.id!!, viewModel.getSubCategory().id!!)
                     }
                 }
             }
@@ -184,7 +184,7 @@ class AddEditSubCategoryFragment : BaseFragment(), View.OnClickListener {
                 Status.SUCCESS -> {
                     Log.d(TAG, "sub categories::${it.data}")
                     val subCategoryList = it.data
-                    if (!subCategoryList.isNullOrEmpty()) {
+                    if (!subCategoryList.isNullOrEmpty() && viewModel.selSubCatIndex >= 0) {
                         val subCategory = subCategoryList[viewModel.selSubCatIndex]
                         binding.tiedttxtSubcatSubCategory.setText(subCategory.name)
                     }
@@ -221,14 +221,18 @@ class AddEditSubCategoryFragment : BaseFragment(), View.OnClickListener {
                 DialogInterface.OnClickListener { dialog, whichButton ->
                     dialog.dismiss()
                     viewModel.selSubCatIndex = (dialog as AlertDialog).listView.checkedItemPosition
-                    val selectedSubCat = viewModel.getSubCategoryList()[viewModel.selSubCatIndex]
-                    Log.d(TAG, "Selected Sub Category : ${selectedSubCat}")
-                    viewModel.getNewSubCategory().catId = selectedSubCat.catId
-                    if (!selectedSubCat.name.equals("none", true))
-                        viewModel.getNewSubCategory().subCatId = selectedSubCat.id
-                    else
-                        viewModel.getNewSubCategory().subCatId = 0
-                    binding.tiedttxtSubcatSubCategory.setText(selectedSubCat.name)
+
+                    if (viewModel.selSubCatIndex >= 0) {
+                        val selectedSubCat =
+                            viewModel.getSubCategoryList()[viewModel.selSubCatIndex]
+                        Log.d(TAG, "Selected Sub Category : ${selectedSubCat}")
+                        viewModel.getNewSubCategory().catId = selectedSubCat.catId
+                        if (!selectedSubCat.name.equals("none", true))
+                            viewModel.getNewSubCategory().subCatId = selectedSubCat.id
+                        else
+                            viewModel.getNewSubCategory().subCatId = 0
+                        binding.tiedttxtSubcatSubCategory.setText(selectedSubCat.name)
+                    }
                 })
             show()
         }

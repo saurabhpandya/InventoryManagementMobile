@@ -80,12 +80,10 @@ class ProductsFragment : BaseFragment(), OnItemClickListner {
         if (arguments != null) {
             viewModel.subCatId = requireArguments().getInt(BUNDLE_SUB_CAT_ID, -1)
         }
-
     }
 
     private fun getData() {
         viewModel.getProductsBySubCatId().observe(viewLifecycleOwner, Observer {
-
             when (it.status) {
                 Status.LOADING -> {
                     binding.prgrs.visibility = View.VISIBLE

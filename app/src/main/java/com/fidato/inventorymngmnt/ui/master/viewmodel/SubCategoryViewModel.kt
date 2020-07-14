@@ -1,6 +1,7 @@
 package com.fidato.inventorymngmnt.ui.master.viewmodel
 
 import android.app.Application
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.MutableLiveData
@@ -38,6 +39,8 @@ class SubCategoryViewModel(
 
     var deleteSubCatResponse = MutableLiveData<Resource<CommonResponse>>()
 
+    var selectedSubCat: SubCategory? = null
+
     var catId: Int = -1
     var catName: String = ""
     var subCatId: Int = -1
@@ -49,6 +52,18 @@ class SubCategoryViewModel(
     fun getSubCategoryBundle(subCatListPos: Int) = bundleOf(
         BUNDLE_SUB_CAT to arylstSubCategory.get(subCatListPos)
     )
+
+    fun getCatBundleToAddSubCategory(): Bundle {
+        var bundle = Bundle()
+        if (selectedSubCat != null) {
+            bundle = bundleOf(BUNDLE_SUB_CAT to selectedSubCat)
+        } else {
+            bundle = bundleOf(BUNDLE_SUB_CAT to SubCategory(-1, "", catId, -1))
+        }
+
+
+        return bundle
+    }
 
     fun getSubCategoryByCatId(catId: Int) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))

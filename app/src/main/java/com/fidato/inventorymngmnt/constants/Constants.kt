@@ -8,6 +8,7 @@ class Constants {
         const val something_wrong = "Something went wrong, Please try after sometime"
         const val connect_exception = "Not able to connect with server, Please try after sometime"
 
+        const val BUNDLE_CAT = "cat"
         const val BUNDLE_CAT_ID = "cat_id"
         const val BUNDLE_CAT_NAME = "cat_name"
 

@@ -86,6 +86,9 @@ class AddEditSubCategoryViewModel(
                 newSubCategory = subCatBundle.getParcelable<SubCategory>(BUNDLE_SUB_CAT)!!
                 subCategory = newSubCategory
                 category.id = newSubCategory.catId
+            } else {
+                subCategory = subCatBundle.getParcelable<SubCategory>(BUNDLE_SUB_CAT)!!
+                category.id = subCategory.catId
             }
         }
     }
@@ -235,13 +238,16 @@ class AddEditSubCategoryViewModel(
     private fun selectCategoryToAdapter() {
         selCatIndex =
             categoryList.indexOfFirst { category -> category.id!!.equals(this.category.id) }
-        setCategory(categoryList[selCatIndex])
+        if (selCatIndex >= 0)
+            setCategory(categoryList[selCatIndex])
     }
 
     private fun selectSubCategoryToAdapter() {
         selSubCatIndex =
             subCategoryList.indexOfFirst { subCategory -> subCategory.id!!.equals(this.subCategory.subCatId) }
-        setSubCategory(subCategoryList[selSubCatIndex])
+        if (selSubCatIndex >= 0)
+            setSubCategory(subCategoryList[selSubCatIndex])
+
     }
 
 }

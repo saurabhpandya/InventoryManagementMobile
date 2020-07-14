@@ -200,20 +200,22 @@ class SubCategoryFragment : BaseFragment(), OnItemClickListner, View.OnClickList
     }
 
     override fun onItemClickListner(position: Int) {
-        val subCategory = viewModel.arylstSubCategory.get(position)
-        Log.d(TAG, "Sub Category : ${subCategory}")
-        if (subCategory.subCatId != null) {
-            getSubCategories(subCategory.catId, subCategory.id!!)
+        viewModel.selectedSubCat = viewModel.arylstSubCategory.get(position)
+        Log.d(TAG, "Sub Category : ${viewModel.selectedSubCat}")
+        if (viewModel.selectedSubCat?.subCatId != null) {
+            getSubCategories(viewModel.selectedSubCat?.catId!!, viewModel.selectedSubCat?.id!!)
         } else {
             Log.d(TAG, "End of sub category")
         }
-
     }
+
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.fab_add_sub_cat -> {
-                navigateTo(SubCategoryNavigation.ADD_EDIT_SUB_CATEGORY, null)
+                val addSubCatBundle = viewModel.getCatBundleToAddSubCategory()
+                addSubCatBundle.putBoolean(BUNDLE_EDIT_SUB_CAT, false)
+                navigateTo(SubCategoryNavigation.ADD_EDIT_SUB_CATEGORY, addSubCatBundle)
             }
         }
     }
