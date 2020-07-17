@@ -229,7 +229,7 @@ class AddEditSubCategoryViewModel(
         } catch (e: Exception) {
             e.printStackTrace()
             withContext(Dispatchers.Main) {
-                saveSubCatResponse.value = Resource.error(null, e.localizedMessage)
+                saveSubCatResponse.value = Resource.error(null, getExceptionMessage(e))
             }
 
         }

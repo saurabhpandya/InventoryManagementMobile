@@ -5,6 +5,7 @@ import com.fidato.inventorymngmnt.data.model.BaseResponse
 import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.data.model.master.Product
+import com.fidato.inventorymngmnt.data.model.master.ProductVarient
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
 
 class MasterRepository(private val masterDataProvider: MasterNetworkDataProvider) {
@@ -62,5 +63,24 @@ class MasterRepository(private val masterDataProvider: MasterNetworkDataProvider
 
     suspend fun updateProduct(updateProductRequest: Product): BaseResponse<CommonResponse> =
         masterDataProvider.updateProduct(updateProductRequest)
+
+    // Product Variant
+    suspend fun getAllProductsVariant(): BaseResponse<ArrayList<ProductVarient>> =
+        masterDataProvider.getAllProductVariants()
+
+    suspend fun getProductVariantById(id: Int): BaseResponse<ProductVarient> =
+        masterDataProvider.getProductVariantById(id)
+
+    suspend fun getProductVariantBySubCatId(productId: Int): BaseResponse<ArrayList<ProductVarient>> =
+        masterDataProvider.getProductVariantByProductId(productId)
+
+    suspend fun saveProductVariant(saveProductRequest: ProductVarient): BaseResponse<CommonResponse> =
+        masterDataProvider.saveProductVariant(saveProductRequest)
+
+    suspend fun deleteProductVariant(deleteProductRequest: ProductVarient): BaseResponse<CommonResponse> =
+        masterDataProvider.deleteProductVariant(deleteProductRequest)
+
+    suspend fun updateProductVariant(updateProductRequest: ProductVarient): BaseResponse<CommonResponse> =
+        masterDataProvider.updateProductVariant(updateProductRequest)
 
 }

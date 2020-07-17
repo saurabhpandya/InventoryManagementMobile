@@ -15,6 +15,7 @@ import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseFragment
 import com.fidato.inventorymngmnt.base.ViewModelFactory
 import com.fidato.inventorymngmnt.constants.Constants
+import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_EDIT_PRODUCT
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_SUB_CAT_ID
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.model.master.Product
@@ -22,10 +23,12 @@ import com.fidato.inventorymngmnt.databinding.FragmentProductsBinding
 import com.fidato.inventorymngmnt.networking.RetrofitClient
 import com.fidato.inventorymngmnt.ui.products.adapter.ProductAdapter
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductViewModel
+import com.fidato.inventorymngmnt.utility.CategoryUnderlayButtonClickListner
 import com.fidato.inventorymngmnt.utility.OnItemClickListner
 import com.fidato.inventorymngmnt.utility.Status
 
-class ProductsFragment : BaseFragment(), OnItemClickListner {
+class ProductsFragment : BaseFragment(), OnItemClickListner,
+    View.OnClickListener, CategoryUnderlayButtonClickListner {
 
     private val TAG: String = ProductsFragment::class.java.canonicalName.toString()
 
@@ -44,6 +47,7 @@ class ProductsFragment : BaseFragment(), OnItemClickListner {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupViewModel()
+        setListener()
         setupRecyclerView()
         getBundleData()
         getData()
@@ -72,8 +76,13 @@ class ProductsFragment : BaseFragment(), OnItemClickListner {
             )
         )
         binding.rcyclrvwProducts.setHasFixedSize(true)
+        viewModel.getSwipeHelper(this).attachToRecyclerView(binding.rcyclrvwProducts)
         viewModel.productAdapter = ProductAdapter(viewModel.arylstProduct, this)
         binding.rcyclrvwProducts.adapter = viewModel.productAdapter
+    }
+
+    private fun setListener() {
+        binding.fabAddProduct.setOnClickListener(this)
     }
 
     private fun getBundleData() {
@@ -110,20 +119,68 @@ class ProductsFragment : BaseFragment(), OnItemClickListner {
         })
     }
 
+    private fun navigateTo(productNavigation: ProductNavigation, bundle: Bundle?) {
+        when (productNavigation) {
+            ProductNavigation.ADD_EDIT_PRODUCT -> {
+                view?.findNavController()
+                    ?.navigate(
+                        R.id.action_productsFragment_to_addEditProductFragment,
+                        bundle
+                    )
+            }
+            ProductNavigation.PRODUCT_DETAIL -> {
+                view?.findNavController()
+                    ?.navigate(R.id.action_productsFragment_to_productDetailFragment, bundle)
+            }
+        }
+    }
+
+    private fun navigateToProductAddEdit(isEdit: Boolean, position: Int) {
+        var bundle: Bundle
+        if (isEdit) {
+            bundle = viewModel.getBundleToEditProduct(viewModel.arylstProduct[position])
+        } else {
+            bundle = bundleOf(BUNDLE_SUB_CAT_ID to viewModel.subCatId)
+        }
+        bundle.putBoolean(BUNDLE_EDIT_PRODUCT, isEdit)
+        navigateTo(ProductNavigation.ADD_EDIT_PRODUCT, bundle)
+    }
 
     private fun navigateToProductDetails() {
         var bundle = bundleOf(
             Constants.BUNDLE_PRODUCT_ID to viewModel.productId
         )
-        view?.findNavController()
-            ?.navigate(R.id.action_productsFragment_to_productDetailFragment, bundle)
+        navigateTo(ProductNavigation.PRODUCT_DETAIL, bundle)
     }
 
     override fun onItemClickListner(position: Int) {
         val product = viewModel.arylstProduct.get(position)
-        Log.d(TAG, "Product : ${product}")
-        viewModel.productId = product.id
+        Log.d(TAG, "Product : ${product.name}")
+        viewModel.productId = product.id ?: -1
         navigateToProductDetails()
     }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.fab_add_product -> {
+                navigateToProductAddEdit(false, -1)
+            }
+        }
+    }
+
+    override fun deleteUnderlayClicked(position: Int) {
+        Log.d(TAG, "Delete Underlay Button clicked at : $position")
+        viewModel.deleteProduct(position)
+    }
+
+    override fun editUnderlayClicked(position: Int) {
+        navigateToProductAddEdit(true, position)
+    }
+
+}
+
+enum class ProductNavigation {
+    PRODUCT_DETAIL,
+    ADD_EDIT_PRODUCT,
+    ADD_EDIT_PRODUCT_VARIANT
 }

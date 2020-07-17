@@ -1,30 +1,39 @@
 package com.fidato.inventorymngmnt.data.model.master
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.Parcelize
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Parcelize
 data class Product(
     @JsonProperty("id")
-    val id: Int = -1,
+    var id: Int? = null,
     @JsonProperty("name")
-    val name: String = "",
+    var name: String? = null,
     @JsonProperty("description")
-    val description: String = "",
+    var description: String? = null,
     @JsonProperty("subCatId")
-    val subCatId: Int = -1,
+    var subCatId: Int? = -1,
     @JsonProperty("supplierId")
-    val supplierId: Int = -1,
+    var supplierId: Int? = -1,
     @JsonProperty("price")
-    val price: Double = 0.0,
+    var price: Double? = null,
     @JsonProperty("currencyId")
-    val currencyId: Int = -1,
+    var currencyId: Int? = null,
     @JsonProperty("quantity")
-    val quantity: Int = -1,
+    var quantity: Int? = null,
     @JsonProperty("active")
-    val active: Boolean = false,
+    var active: Boolean = false,
     @JsonProperty("deleted")
-    val deleted: Boolean = false,
+    var deleted: Boolean = false,
     @JsonProperty("blocked")
-    val blocked: Boolean = false
-)
+    var blocked: Boolean = false,
+    @JsonProperty("productVariantMapping")
+    var productVariantMapping: ArrayList<ProductVarient> = ArrayList<ProductVarient>()
+
+
+) : Parcelable

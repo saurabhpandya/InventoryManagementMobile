@@ -1,6 +1,7 @@
 package com.fidato.inventorymngmnt
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.navigation.findNavController
@@ -45,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         viewModelStore.clear()
         hideKeyboard()
         return findNavController(R.id.nav_host_fragment).navigateUp()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+        return true
     }
 
     override fun onBackPressed() {

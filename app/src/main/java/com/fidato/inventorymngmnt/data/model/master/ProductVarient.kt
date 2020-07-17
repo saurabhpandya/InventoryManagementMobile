@@ -1,27 +1,32 @@
 package com.fidato.inventorymngmnt.data.model.master
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.Parcelize
 
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Parcelize
 data class ProductVarient(
     @JsonProperty("id")
-    val id: Int = -1,
+    var id: Int? = null,
     @JsonProperty("productId")
-    val productId: Int = -1,
+    var productId: Int? = -1,
     @JsonProperty("size")
-    val size: Double = 0.0,
+    var size: String? = null,
     @JsonProperty("color")
-    val color: String = "",
+    var color: String? = null,
     @JsonProperty("quantity")
-    val quantity: Int = -1,
+    var quantity: Int? = null,
     @JsonProperty("price")
-    val price: Double = 0.0,
+    var price: Double? = null,
     @JsonProperty("active")
-    val active: Boolean = false,
+    var active: Boolean = false,
     @JsonProperty("deleted")
-    val deleted: Boolean = false,
+    var deleted: Boolean = false,
     @JsonProperty("blocked")
-    val blocked: Boolean = false
+    var blocked: Boolean = false
 
-)
+) : Parcelable

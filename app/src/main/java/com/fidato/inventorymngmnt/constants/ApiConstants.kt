@@ -23,7 +23,8 @@ class ApiConstants {
         const val ENDPOINT_MASTER_SUB_CATEGORY = "${API_V1_MASTER}/subCategory"
         const val ENDPOINT_SUB_CATEGORY_GET = "$ENDPOINT_MASTER_SUB_CATEGORY/{id}"
         const val ENDPOINT_SUB_CATEGORY_BY_CAT_ID = "$ENDPOINT_MASTER_SUB_CATEGORY/category/{catId}"
-        const val ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID = "$ENDPOINT_MASTER_SUB_CATEGORY/{catId}/{subCatId}"
+        const val ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID =
+            "$ENDPOINT_MASTER_SUB_CATEGORY/{catId}/{subCatId}"
         const val ENDPOINT_SUB_CATEGORY_SAVE = "$ENDPOINT_MASTER_SUB_CATEGORY/saveSubCategory"
         const val ENDPOINT_SUB_CATEGORY_UPDATE = "$ENDPOINT_MASTER_SUB_CATEGORY/updateSubCategory"
         const val ENDPOINT_SUB_CATEGORY_DELETE = "$ENDPOINT_MASTER_SUB_CATEGORY/deleteSubCategory"
@@ -37,6 +38,8 @@ class ApiConstants {
 
         const val ENDPOINT_MASTER_PRODUCT_VARIANT = "${API_V1_MASTER}/product_variant"
         const val ENDPOINT_PRODUCT_VARIANT_GET = "$ENDPOINT_MASTER_PRODUCT_VARIANT/{id}"
+        const val ENDPOINT_PRODUCT_VARIANT_BY_PRODUCT_ID =
+            "$ENDPOINT_MASTER_PRODUCT_VARIANT/product/{product_id}"
         const val ENDPOINT_PRODUCT_VARIANT_SAVE =
             "$ENDPOINT_MASTER_PRODUCT_VARIANT/saveProductVariant"
         const val ENDPOINT_PRODUCT_VARIANT_UPDATE =

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidato.inventorymngmnt.ui.products.viewmodel.AddEditProductVariantViewModel" />
+
+        <variable
+            name="productVariant"
+            type="com.fidato.inventorymngmnt.data.model.master.ProductVarient" />
+
+        <import type="com.fidato.inventorymngmnt.ui.products.viewmodel.TextChangeComponent" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnstrntlyt_root_add_update_product"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:padding="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnstrntlyt_main_add_update_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/txtvw_prdct_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_prdct_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:hint="@string/lbl_price"
+                    app:error="@{vm.errPrdctPrice}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtvw_prdct_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_prdct_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        app:text="@={productVariant.price}"
+                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_PRICE)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_prdct_qnty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_quantity"
+                    app:error="@{vm.errPrdctQnty}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_prdct_price">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_prdct_qnty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_QUANTITY)}"
+                        app:textInt="@={productVariant.quantity}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_prdct_color"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_color"
+                    app:error="@{vm.errPrdctColor}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_prdct_qnty">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_prdct_color"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:singleLine="true"
+                        android:text="@={productVariant.color}"
+                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_COLOR)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_prdct_size"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_size"
+                    app:error="@{vm.errPrdctSize}"
+                    app:errorEnabled="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_prdct_color">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_prdct_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:singleLine="true"
+                        android:text="@={productVariant.size}"
+                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_SIZE)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_add_prdct_variant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> vm.validateProductVariantData()}"
+                    android:text="@string/btn_add_variant"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_prdct_size" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/no_data"
+            layout="@layout/no_data_view"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/prgrs"
+            layout="@layout/progress_indicator"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

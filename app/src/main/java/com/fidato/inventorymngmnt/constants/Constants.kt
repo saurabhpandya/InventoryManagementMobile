@@ -16,10 +16,17 @@ class Constants {
         const val BUNDLE_SUB_CAT_ID = "sub_cat_id"
         const val BUNDLE_SUB_CAT_NAME = "sub_cat_name"
 
+        const val BUNDLE_PRODUCT = "product"
         const val BUNDLE_PRODUCT_ID = "product_id"
+        const val BUNDLE_PRODUCT_NAME = "product_name"
+
+        const val BUNDLE_PRODUCT_VARIANT = "product_variant"
+        const val BUNDLE_PRODUCT_VARIANT_INDEX = "product_variant_index"
 
         const val BUNDLE_EDIT_CAT = "edit_category"
         const val BUNDLE_EDIT_SUB_CAT = "edit_sub_category"
+        const val BUNDLE_EDIT_PRODUCT = "edit_product"
+        const val BUNDLE_EDIT_PRODUCT_VARIANT = "edit_product_variant"
 
         const val ERR_CAT_NAME = "Enter Category Name"
         const val ERR_SUB_CAT_NAME = "Enter Sub Category Name"
@@ -29,6 +36,15 @@ class Constants {
 
         const val ERR_NO_SUB_CAT = "No Sub Category found"
         const val ERR_NO_CAT = "No Category found"
+
+        const val ERR_PRODUCT_NAME = "Enter Name"
+        const val ERR_PRODUCT_DESC = "Enter Desc"
+
+
+        const val ERR_PRODUCT_VARIANT_PRICE = "Enter price"
+        const val ERR_PRODUCT_VARIANT_QUANTITY = "Enter quantity"
+        const val ERR_PRODUCT_VARIANT_COLOR = "Enter color"
+        const val ERR_PRODUCT_VARIANT_SIZE = "Enter size"
 
     }
 }

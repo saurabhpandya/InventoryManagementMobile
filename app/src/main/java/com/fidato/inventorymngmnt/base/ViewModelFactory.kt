@@ -10,6 +10,8 @@ import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditCategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditSubCategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.CategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.SubCategoryViewModel
+import com.fidato.inventorymngmnt.ui.products.viewmodel.AddEditProductVariantViewModel
+import com.fidato.inventorymngmnt.ui.products.viewmodel.AddEditProductViewModel
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductDetailsViewModel
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductViewModel
 
@@ -17,7 +19,21 @@ class ViewModelFactory<T>(private val dataProvider: T, private val application: 
     ViewModelProvider.AndroidViewModelFactory(application) {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        if (modelClass.isAssignableFrom(AddEditSubCategoryViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(AddEditProductVariantViewModel::class.java)) {
+            return AddEditProductVariantViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(AddEditProductViewModel::class.java)) {
+            return AddEditProductViewModel(
+                application,
+                MasterRepository(
+                    dataProvider as MasterNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(AddEditSubCategoryViewModel::class.java)) {
             return AddEditSubCategoryViewModel(
                 application,
                 MasterRepository(

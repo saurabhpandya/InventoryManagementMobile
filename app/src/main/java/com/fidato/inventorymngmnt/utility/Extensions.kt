@@ -7,6 +7,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.fidato.inventorymngmnt.constants.Constants.Companion.no_internet
 
 fun Activity.hideKeyboard() {
@@ -58,3 +60,13 @@ val Context.isNetworkAvailable: Pair<Boolean, String>
         }
         return Pair(false, no_internet)
     }
+
+fun <T> Fragment.getNavigationResult(key: String = "result") =
+    findNavController().currentBackStackEntry?.savedStateHandle?.get<T>(key)
+
+fun <T> Fragment.getNavigationResultLiveData(key: String = "result") =
+    findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<T>(key)
+
+fun <T> Fragment.setNavigationResult(result: T, key: String = "result") {
+    findNavController().previousBackStackEntry?.savedStateHandle?.set(key, result)
+}

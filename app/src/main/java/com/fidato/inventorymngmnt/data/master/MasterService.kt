@@ -6,12 +6,18 @@ import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_CATE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_CATEGORY_UPDATE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_CATEGORY
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_PRODUCT
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_PRODUCT_VARIANT
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_SUB_CATEGORY
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_BY_SUBCAT_ID
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_DELETE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_GET
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_SAVE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_UPDATE
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_VARIANT_BY_PRODUCT_ID
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_VARIANT_DELETE
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_VARIANT_GET
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_VARIANT_SAVE
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_VARIANT_UPDATE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_SUB_CATEGORY_BY_CAT_ID
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_SUB_CATEGORY_DELETE
@@ -22,11 +28,9 @@ import com.fidato.inventorymngmnt.data.model.BaseResponse
 import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.Category
 import com.fidato.inventorymngmnt.data.model.master.Product
+import com.fidato.inventorymngmnt.data.model.master.ProductVarient
 import com.fidato.inventorymngmnt.data.model.master.SubCategory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface MasterService {
 
@@ -87,8 +91,27 @@ interface MasterService {
     @POST(ENDPOINT_PRODUCT_DELETE)
     suspend fun deleteProduct(@Body deleteProductRequest: Product): BaseResponse<CommonResponse>
 
-    @POST(ENDPOINT_PRODUCT_UPDATE)
+    @PUT(ENDPOINT_PRODUCT_UPDATE)
     suspend fun updateProduct(@Body updateProductRequest: Product): BaseResponse<CommonResponse>
+
+    // Product Variant
+    @GET(ENDPOINT_MASTER_PRODUCT_VARIANT)
+    suspend fun getAllProductVariants(): BaseResponse<ArrayList<ProductVarient>>
+
+    @GET(ENDPOINT_PRODUCT_VARIANT_GET)
+    suspend fun getProductVariantById(@Path("id") id: Int): BaseResponse<ProductVarient>
+
+    @GET(ENDPOINT_PRODUCT_VARIANT_BY_PRODUCT_ID)
+    suspend fun getProductVariantByProductId(@Path("productId") productId: Int): BaseResponse<ArrayList<ProductVarient>>
+
+    @POST(ENDPOINT_PRODUCT_VARIANT_SAVE)
+    suspend fun saveProductVariant(@Body saveProductRequest: ProductVarient): BaseResponse<CommonResponse>
+
+    @POST(ENDPOINT_PRODUCT_VARIANT_DELETE)
+    suspend fun deleteProductVariant(@Body deleteProductRequest: ProductVarient): BaseResponse<CommonResponse>
+
+    @PUT(ENDPOINT_PRODUCT_VARIANT_UPDATE)
+    suspend fun updateProductVariant(@Body updateProductRequest: ProductVarient): BaseResponse<CommonResponse>
 
 
 }
