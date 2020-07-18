@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.android.parcel.Parcelize
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = arrayOf("selected"))
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Parcelize
 data class ProductVarient(
@@ -27,6 +27,7 @@ data class ProductVarient(
     @JsonProperty("deleted")
     var deleted: Boolean = false,
     @JsonProperty("blocked")
-    var blocked: Boolean = false
-
+    var blocked: Boolean = false,
+    @JsonProperty("selected")
+    var selected: Boolean = false
 ) : Parcelable

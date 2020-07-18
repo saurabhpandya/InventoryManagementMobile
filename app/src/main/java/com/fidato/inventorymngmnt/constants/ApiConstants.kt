@@ -21,6 +21,7 @@ class ApiConstants {
         const val ENDPOINT_CATEGORY_DELETE = "$ENDPOINT_MASTER_CATEGORY/deleteCategory"
 
         const val ENDPOINT_MASTER_SUB_CATEGORY = "${API_V1_MASTER}/subCategory"
+        const val ENDPOINT_MASTER_SUB_CATEGORY_LEAFS = "${API_V1_MASTER}/subCategoryLeafs"
         const val ENDPOINT_SUB_CATEGORY_GET = "$ENDPOINT_MASTER_SUB_CATEGORY/{id}"
         const val ENDPOINT_SUB_CATEGORY_BY_CAT_ID = "$ENDPOINT_MASTER_SUB_CATEGORY/category/{catId}"
         const val ENDPOINT_SUB_CATEGORY_BY_SUBCAT_ID =

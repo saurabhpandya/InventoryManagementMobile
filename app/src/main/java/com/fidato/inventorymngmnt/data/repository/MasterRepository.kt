@@ -27,6 +27,8 @@ class MasterRepository(private val masterDataProvider: MasterNetworkDataProvider
     // Sub Category
     suspend fun getSubCategory() = masterDataProvider.getSubCategory()
 
+    suspend fun getSubCategoryLeafs() = masterDataProvider.getSubCategoryLeafs()
+
     suspend fun getSubCategoryById(id: Int) =
         masterDataProvider.getSubCategoryById(id)
 

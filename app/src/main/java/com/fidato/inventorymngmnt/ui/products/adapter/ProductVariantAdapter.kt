@@ -2,8 +2,10 @@ package com.fidato.inventorymngmnt.ui.products.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.fidato.inventorymngmnt.InventoryManagementApp
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.data.model.master.ProductVarient
 import com.fidato.inventorymngmnt.databinding.RawProductVariantBinding
@@ -57,10 +59,21 @@ class ProductVariantAdapter<T>(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindItems(productVarient: T) {
-            if (isForSize) {
-                binding.txtvwVariant.text = "${productVarient}"
+            val productVariantMapping = productVarient as ProductVarient
+            if (productVariantMapping.selected) {
+                binding.rawPrdctRoot.background = ContextCompat.getDrawable(
+                    InventoryManagementApp.context,
+                    R.drawable.bg_round_corners_sel
+                )
             } else {
-                var productVariantMapping = productVarient as ProductVarient
+                binding.rawPrdctRoot.background = ContextCompat.getDrawable(
+                    InventoryManagementApp.context,
+                    R.drawable.bg_round_corners
+                )
+            }
+            if (isForSize) {
+                binding.txtvwVariant.text = productVarient.size
+            } else {
                 binding.txtvwVariant.text = productVariantMapping.color
             }
         }

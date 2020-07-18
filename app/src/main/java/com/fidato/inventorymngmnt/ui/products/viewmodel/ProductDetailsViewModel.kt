@@ -1,6 +1,7 @@
 package com.fidato.inventorymngmnt.ui.products.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.fidato.inventorymngmnt.base.BaseViewModel
 import com.fidato.inventorymngmnt.data.model.master.Product
@@ -19,31 +20,43 @@ class ProductDetailsViewModel(
 
     private val context = application.applicationContext
 
-    var product: Product
+    var product: Product = Product()
 
-    var arylstProductColorVarient: ArrayList<ProductVarient>
+    var arylstProductSizeVarient: ArrayList<ProductVarient> = ArrayList<ProductVarient>()
+    var arylstProductColorVarient: ArrayList<ProductVarient> = ArrayList<ProductVarient>()
 
+    lateinit var productSizeVarientAdapter: ProductVariantAdapter<ProductVarient>
     lateinit var productColorVarientAdapter: ProductVariantAdapter<ProductVarient>
 
     var productId: Int = 0
 
-    init {
-        product = Product()
-        arylstProductColorVarient = ArrayList<ProductVarient>()
-    }
+    lateinit var productVariantMapBySize: Map<String, List<ProductVarient>>
 
     fun getProductsById() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
             val productsBySubCatId = masterRepository.getProductById(productId)
             if (productsBySubCatId.data != null) {
-                emit(Resource.success(productsBySubCatId.data))
-            } else {
-                emit(Resource.error(null, productsBySubCatId.error?.errorMessage ?: ""))
+                product = productsBySubCatId.data
+                getProductVariantMapByColor()
+                emit(Resource.success(product))
+            } else if (productsBySubCatId.error != null) {
+                emit(Resource.error(null, productsBySubCatId.error.errorMessage ?: ""))
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(Resource.error(null, e.localizedMessage))
+            emit(Resource.error(null, getExceptionMessage(e)))
+        }
+    }
+
+    fun getProductVariantMapByColor() {
+        var productVariantsList = product.productVariantMapping
+        if (!productVariantsList.isNullOrEmpty()) {
+            productVariantMapBySize = productVariantsList.groupBy {
+                it.size!!
+            }
+            Log.d(TAG, "productVariantMapBySize:: ${productVariantMapBySize}")
+
         }
     }
 

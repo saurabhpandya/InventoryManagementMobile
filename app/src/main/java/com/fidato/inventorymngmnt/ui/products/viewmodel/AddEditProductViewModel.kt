@@ -146,6 +146,8 @@ class AddEditProductViewModel(
                     emit(Resource.error(null, networkConnectPair.second))
                 }
 
+            } else {
+                emit(Resource.success(product))
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -185,10 +187,10 @@ class AddEditProductViewModel(
 
     fun getSubCategory() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
-        val subCategoriesBaseResponse = masterRepository.getSubCategory()
         try {
-            if (subCategoriesBaseResponse.data != null) {
+            val subCategoriesBaseResponse = masterRepository.getSubCategoryLeafs()
 
+            if (subCategoriesBaseResponse.data != null) {
                 val subCategories = ArrayList<SubCategory>()
                 subCategories.add(
                     SubCategory(

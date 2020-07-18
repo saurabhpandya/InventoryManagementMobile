@@ -42,5 +42,5 @@
     <string name="btn_add_variant">Add Variant</string>
     <string name="title_add_variant">Add Product Variant</string>
     <string name="title_edit_variant">Edit Product Variant</string>
-
+    <string name="lbl_price_val">Price : %.2f</string>
 </resources>

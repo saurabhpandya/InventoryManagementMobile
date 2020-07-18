@@ -88,28 +88,30 @@ class AddEditProductFragment : BaseFragment(), OnItemClickListner,
     private fun getData() {
 
         getBundleData()
-        viewModel.getProduct().observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "getProduct: Status: ${it.status}")
-            when (it.status) {
-                Status.LOADING -> {
-                    binding.prgrs.visibility = View.VISIBLE
+        if (viewModel.product.subCatId!! > -1) {
+            viewModel.getProduct().observe(viewLifecycleOwner, Observer {
+                Log.d(TAG, "getProduct: Status: ${it.status}")
+                when (it.status) {
+                    Status.LOADING -> {
+                        binding.prgrs.visibility = View.VISIBLE
+                    }
+                    Status.ERROR -> {
+                        Log.d(TAG, "getProduct: Error Message: ${it.message}")
+                        binding.prgrs.visibility = View.GONE
+                        activity?.showToast(it.message!!)
+                    }
+                    Status.SUCCESS -> {
+                        Log.d(TAG, "getProduct: Data: ${it.data}")
+                        binding.prgrs.visibility = View.GONE
+                        viewModel.product = it.data!!
+                        binding.tiedttxtPrdctName.setText(viewModel.product.name)
+                        binding.tiedttxtPrdctDesc.setText(viewModel.product.description)
+                        viewModel.addProductVariantAdap.setProductVariant(viewModel.product.productVariantMapping)
+                        getSubCategory()
+                    }
                 }
-                Status.ERROR -> {
-                    Log.d(TAG, "getProduct: Error Message: ${it.message}")
-                    binding.prgrs.visibility = View.GONE
-                    activity?.showToast(it.message!!)
-                }
-                Status.SUCCESS -> {
-                    Log.d(TAG, "getProduct: Data: ${it.data}")
-                    binding.prgrs.visibility = View.GONE
-                    viewModel.product = it.data!!
-                    binding.tiedttxtPrdctName.setText(viewModel.product.name)
-                    binding.tiedttxtPrdctDesc.setText(viewModel.product.description)
-                    viewModel.addProductVariantAdap.setProductVariant(viewModel.product.productVariantMapping)
-                    getSubCategory()
-                }
-            }
-        })
+            })
+        }
     }
 
     private fun getSubCategory() {

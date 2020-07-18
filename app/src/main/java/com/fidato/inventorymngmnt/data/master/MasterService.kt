@@ -8,6 +8,7 @@ import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MAST
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_PRODUCT
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_PRODUCT_VARIANT
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_SUB_CATEGORY
+import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_MASTER_SUB_CATEGORY_LEAFS
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_BY_SUBCAT_ID
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_DELETE
 import com.fidato.inventorymngmnt.constants.ApiConstants.Companion.ENDPOINT_PRODUCT_GET
@@ -53,6 +54,9 @@ interface MasterService {
     // Sub Category
     @GET(ENDPOINT_MASTER_SUB_CATEGORY)
     suspend fun getAllSubCategory(): BaseResponse<ArrayList<SubCategory>>
+
+    @GET(ENDPOINT_MASTER_SUB_CATEGORY_LEAFS)
+    suspend fun getAllSubCategoryLeafs(): BaseResponse<ArrayList<SubCategory>>
 
     @GET(ENDPOINT_SUB_CATEGORY_GET)
     suspend fun getSubCategoryById(@Path("id") id: Int): BaseResponse<SubCategory>

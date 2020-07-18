@@ -69,6 +69,7 @@ class AddEditCategoryViewModel(application: Application, val masterRepository: M
             isCatDataValid = true
             val networkAvailblePair = mContext.isNetworkAvailable
             if (networkAvailblePair.first) {
+                category.name = category.name.trim()
                 saveCategory()
             } else {
                 mContext.showToast(networkAvailblePair.second)

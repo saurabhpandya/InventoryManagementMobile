@@ -26,6 +26,8 @@ class MasterNetworkDataProvider(private val masterService: MasterService) {
     //  Sub Category
     suspend fun getSubCategory() = masterService.getAllSubCategory()
 
+    suspend fun getSubCategoryLeafs() = masterService.getAllSubCategoryLeafs()
+
     suspend fun getSubCategoryById(id: Int) = masterService.getSubCategoryById(id)
 
     suspend fun getSubCategoryByCatId(catId: Int) = masterService.getSubCategoryByCatId(catId)

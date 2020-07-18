@@ -52,8 +52,12 @@ class AddProductVariantAdapter(
     class ViewHolder(val binding: RawAddProductVariantBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bindItems(productVariant: ProductVarient) {
-            binding.productVariant = productVariant
-            binding.executePendingBindings()
+            binding.txtvwPrdctColor.text = "Color: ${productVariant.color}"
+            binding.txtvwPrdctId.text = "Vairant Id: ${productVariant.id}"
+            binding.txtvwPrdctSize.text = "Size: ${productVariant.size}"
+            binding.txtvwPrdctPrice.text = "Price: ${productVariant.price}"
+//            binding.productVariant = productVariant
+//            binding.executePendingBindings()
         }
     }
 }
