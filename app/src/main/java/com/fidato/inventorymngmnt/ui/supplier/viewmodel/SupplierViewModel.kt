@@ -1,4 +1,4 @@
-package com.fidato.inventorymngmnt.ui.customer.viewmodel
+package com.fidato.inventorymngmnt.ui.supplier.viewmodel
 
 import android.app.Application
 import androidx.core.content.ContextCompat
@@ -6,28 +6,26 @@ import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseViewModel
-import com.fidato.inventorymngmnt.data.customer.CustomerRepository
-import com.fidato.inventorymngmnt.data.model.Customer
-import com.fidato.inventorymngmnt.ui.customer.adapter.CustomerAdapter
+import com.fidato.inventorymngmnt.data.model.Supplier
+import com.fidato.inventorymngmnt.data.supplier.SupplierRepository
+import com.fidato.inventorymngmnt.ui.supplier.adapter.SupplierAdapter
 import com.fidato.inventorymngmnt.utility.CategoryUnderlayButtonClickListner
 import com.fidato.inventorymngmnt.utility.Resource
 import com.fidato.inventorymngmnt.utility.SwipeHelper
 import com.fidato.inventorymngmnt.utility.isNetworkAvailable
 import kotlinx.coroutines.Dispatchers
 
-class CustomerViewModel(
+class SupplierViewModel(
     application: Application,
-    val customerRepository: CustomerRepository
+    val supplierRepository: SupplierRepository
 ) : BaseViewModel(application) {
-
-    private val TAG = this::class.java.canonicalName
 
     private val mContext = application.applicationContext
 
-    lateinit var customerAdapter: CustomerAdapter
-    private var arylstCustomer = ArrayList<Customer>()
+    lateinit var supplierAdapter: SupplierAdapter
+    private var arylstSupplier = ArrayList<Supplier>()
 
-    fun getCustomerList() = arylstCustomer
+    fun getSupplierList() = arylstSupplier
 
     fun getSwipeHelper(catUnderLayBtnClickLister: CategoryUnderlayButtonClickListner) =
         object : SwipeHelper(mContext) {
@@ -59,17 +57,17 @@ class CustomerViewModel(
             }
         }
 
-    fun getCustomers() = liveData(Dispatchers.IO) {
+    fun getSuppliers() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         val networkValidatorPair = mContext.isNetworkAvailable
         if (networkValidatorPair.first) {
             try {
-                val customerBaseResponse = customerRepository.getCustomer()
-                if (customerBaseResponse.data != null) {
-                    arylstCustomer = customerBaseResponse.data
-                    emit(Resource.success(arylstCustomer))
+                val supplierBaseResponse = supplierRepository.getSupplier()
+                if (supplierBaseResponse.data != null) {
+                    arylstSupplier = supplierBaseResponse.data
+                    emit(Resource.success(arylstSupplier))
                 } else {
-                    emit(Resource.error(null, customerBaseResponse.error?.errorMessage!!))
+                    emit(Resource.error(null, supplierBaseResponse.error?.errorMessage!!))
                 }
 
             } catch (e: Exception) {

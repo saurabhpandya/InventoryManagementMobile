@@ -77,6 +77,8 @@ class ApiConstants {
         const val ENDPOINT_CUSTOMER_SAVE = "$ENDPOINT_CUSTOMER/saveCustomer"
         const val ENDPOINT_CUSTOMER_UPDATE = "$ENDPOINT_CUSTOMER/updateCustomer"
         const val ENDPOINT_CUSTOMER_DELETE = "$ENDPOINT_CUSTOMER/deleteCustomer"
+
+
     }
 
 }

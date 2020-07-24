@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidato.inventorymngmnt.ui.supplier.viewmodel.SupplierViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.supplier.fragment.SupplierFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcyclrvw_suppliers"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/no_data"
+            layout="@layout/no_data_view"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/prgrs"
+            layout="@layout/progress_indicator"
+            android:visibility="gone" />
+
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fab_add_supplier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16ssp"
+            android:src="@drawable/fab_add"
+            app:fab_label="@string/title_fab_supplier"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

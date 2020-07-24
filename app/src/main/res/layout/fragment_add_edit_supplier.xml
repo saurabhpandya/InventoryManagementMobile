@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidato.inventorymngmnt.ui.supplier.viewmodel.AddEditSupplierViewModel" />
+
+        <variable
+            name="supplier"
+            type="com.fidato.inventorymngmnt.data.model.Supplier" />
+
+        <import type="com.fidato.inventorymngmnt.base.TextChangeComponent" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnstrntlyt_root_add_update_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnstrntlyt_main_add_update_supplier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sup_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:hint="@string/lbl_sup_id"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_sup_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sup_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_sup_name"
+                    app:error="@{vm.errSupName}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sup_id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_sup_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={supplier.name}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.SUPPLIER_NAME)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_sup_email"
+                    app:error="@{vm.errSupEmail}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sup_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_sup_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={supplier.email}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.SUPPLIER_EMAIL)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_sup_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_sup_password"
+                    app:error="@{vm.errSupPassword}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sup_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_sup_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={supplier.password}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.SUPPLIER_PASSWORD)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save_supplier"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> vm.validateSupplier()}"
+                    android:text="@string/btn_save"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_sup_password" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/no_data"
+            layout="@layout/no_data_view"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/prgrs"
+            layout="@layout/progress_indicator"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -2,6 +2,7 @@ package com.fidato.inventorymngmnt.networking
 
 import com.fidato.inventorymngmnt.data.customer.CustomerServices
 import com.fidato.inventorymngmnt.data.master.MasterService
+import com.fidato.inventorymngmnt.data.supplier.SupplierServices
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,6 +38,10 @@ object RetrofitClient {
 
     val CUSTOMER_SERVICE: CustomerServices = getRetrofit().create(
         CustomerServices::class.java
+    )
+
+    val SUPPPLIER_SERVICE: SupplierServices = getRetrofit().create(
+        SupplierServices::class.java
     )
 
     class OAuthInterceptor(private val tokenType: String, private val accessToken: String) :

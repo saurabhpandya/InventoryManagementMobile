@@ -19,6 +19,7 @@ class DashboardViewModel(
         arylstDashboard = ArrayList<String>()
         arylstDashboard.add("Products")
         arylstDashboard.add("Customers")
+        arylstDashboard.add("Suppliers")
         arylstDashboard.add("Orders")
         return arylstDashboard
     }

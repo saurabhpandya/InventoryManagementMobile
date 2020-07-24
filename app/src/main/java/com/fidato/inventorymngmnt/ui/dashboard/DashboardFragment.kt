@@ -72,7 +72,9 @@ class DashboardFragment : BaseFragment(), OnItemClickListner {
                 ?.navigate(R.id.action_dashboardFragment_to_categoryFragment, null)
             1 -> view?.findNavController()
                 ?.navigate(R.id.action_dashboardFragment_to_customerFragment, null)
-            2 -> activity?.showToast("Under development")
+            2 -> view?.findNavController()
+                ?.navigate(R.id.action_dashboardFragment_to_supplierFragment, null)
+            3 -> activity?.showToast("Under development")
         }
     }
 

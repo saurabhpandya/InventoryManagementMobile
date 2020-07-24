@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_dashboardFragment_to_customerFragment"
             app:destination="@id/customerFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_supplierFragment"
+            app:destination="@id/supplierFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditCategoryFragment"
@@ -90,4 +93,15 @@
     <fragment
         android:id="@+id/addEditCustomerFragment"
         android:name="com.fidato.inventorymngmnt.ui.customer.fragment.AddEditCustomerFragment" />
+    <fragment
+        android:id="@+id/supplierFragment"
+        android:name="com.fidato.inventorymngmnt.ui.supplier.fragment.SupplierFragment"
+        android:label="@string/title_supplier">
+        <action
+            android:id="@+id/action_supplierFragment_to_addEditSupplierFragment"
+            app:destination="@id/addEditSupplierFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditSupplierFragment"
+        android:name="com.fidato.inventorymngmnt.ui.supplier.fragment.AddEditSupplierFragment" />
 </navigation>

@@ -7,6 +7,8 @@ import com.fidato.inventorymngmnt.data.customer.CustomerNetworkDataProvider
 import com.fidato.inventorymngmnt.data.customer.CustomerRepository
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
+import com.fidato.inventorymngmnt.data.supplier.SupplierNetworkDataProvider
+import com.fidato.inventorymngmnt.data.supplier.SupplierRepository
 import com.fidato.inventorymngmnt.ui.customer.viewmodel.AddEditCustomerViewModel
 import com.fidato.inventorymngmnt.ui.customer.viewmodel.CustomerViewModel
 import com.fidato.inventorymngmnt.ui.dashboard.viewmodel.DashboardViewModel
@@ -18,12 +20,28 @@ import com.fidato.inventorymngmnt.ui.products.viewmodel.AddEditProductVariantVie
 import com.fidato.inventorymngmnt.ui.products.viewmodel.AddEditProductViewModel
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductDetailsViewModel
 import com.fidato.inventorymngmnt.ui.products.viewmodel.ProductViewModel
+import com.fidato.inventorymngmnt.ui.supplier.viewmodel.AddEditSupplierViewModel
+import com.fidato.inventorymngmnt.ui.supplier.viewmodel.SupplierViewModel
 
 class ViewModelFactory<T>(private val dataProvider: T, private val application: Application) :
     ViewModelProvider.AndroidViewModelFactory(application) {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        if (modelClass.isAssignableFrom(AddEditCustomerViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(AddEditSupplierViewModel::class.java)) {
+            return AddEditSupplierViewModel(
+                application,
+                SupplierRepository(
+                    dataProvider as SupplierNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(SupplierViewModel::class.java)) {
+            return SupplierViewModel(
+                application,
+                SupplierRepository(
+                    dataProvider as SupplierNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(AddEditCustomerViewModel::class.java)) {
             return AddEditCustomerViewModel(
                 application,
                 CustomerRepository(

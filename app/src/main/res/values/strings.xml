@@ -59,5 +59,16 @@
     <string name="lbl_cust_mobile">Mobile</string>
     <string name="lbl_cust_password">Password</string>
 
+    <string name="title_supplier">Suppliers</string>
+    <string name="title_edit_sup">Edit Supplier</string>
+    <string name="title_add_sup">Add Supplier</string>
+    <string name="title_fab_sup">Add/Edit Supplier</string>
+
+    <string name="lbl_sup_id">Id</string>
+    <string name="lbl_sup_name">Name</string>
+    <string name="lbl_sup_email">Email</string>
+    <string name="lbl_sup_mobile">Mobile</string>
+    <string name="lbl_sup_password">Password</string>
+
 
 </resources>
