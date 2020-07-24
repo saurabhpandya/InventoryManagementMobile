@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_SUB_CAT
 import com.fidato.inventorymngmnt.data.model.CommonResponse
@@ -183,5 +184,9 @@ class SubCategoryViewModel(
 
             }
         }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
+
+    }
 
 }

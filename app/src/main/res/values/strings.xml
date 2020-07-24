@@ -23,6 +23,10 @@
     <string name="title_add_cat">Add Category</string>
     <string name="title_fab_cat">Add/Edit Category</string>
 
+    <string name="title_edit_supplier">Edit Supplier</string>
+    <string name="title_add_supplier">Add Supplier</string>
+    <string name="title_fab_supplier">Add/Edit Supplier</string>
+
     <string name="btn_save">Save</string>
     <string name="btn_update">Update</string>
 
@@ -43,4 +47,17 @@
     <string name="title_add_variant">Add Product Variant</string>
     <string name="title_edit_variant">Edit Product Variant</string>
     <string name="lbl_price_val">Price : %.2f</string>
+
+    <string name="title_customer">Customers</string>
+    <string name="title_edit_cust">Edit Customer</string>
+    <string name="title_add_cust">Add Customer</string>
+    <string name="title_fab_cust">Add/Edit Customer</string>
+
+    <string name="lbl_cust_id">Id</string>
+    <string name="lbl_cust_name">Name</string>
+    <string name="lbl_cust_email">Email</string>
+    <string name="lbl_cust_mobile">Mobile</string>
+    <string name="lbl_cust_password">Password</string>
+
+
 </resources>

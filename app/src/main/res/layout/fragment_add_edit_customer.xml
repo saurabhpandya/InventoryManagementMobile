@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.fidato.inventorymngmnt.ui.customer.viewmodel.AddEditCustomerViewModel" />
+
+        <variable
+            name="customer"
+            type="com.fidato.inventorymngmnt.data.model.Customer" />
+
+        <import type="com.fidato.inventorymngmnt.base.TextChangeComponent" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cnstrntlyt_root_add_update_customer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cnstrntlyt_main_add_update_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_16sdp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cust_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_50sdp"
+                    android:hint="@string/lbl_cust_id"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_cust_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:singleLine="true" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cust_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_cust_name"
+                    app:error="@{vm.errCustName}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cust_id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_cust_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={customer.name}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.CUSTOMER_NAME)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cust_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_cust_email"
+                    app:error="@{vm.errCustEmail}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cust_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_cust_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={customer.email}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.CUSTOMER_EMIAL)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cust_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_cust_mobile"
+                    app:error="@{vm.errCustMobile}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cust_email">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_cust_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={customer.mobile}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.CUSTOMER_MOBILE)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/til_cust_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/lbl_cust_password"
+                    app:error="@{vm.errCustPassword}"
+                    app:errorEnabled="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cust_mobile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/tiedttxt_cust_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="@={customer.password}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.CUSTOMER_PASSWORD)}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_save_customer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> vm.validateCustomer()}"
+                    android:text="@string/btn_save"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/til_cust_password" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/no_data"
+            layout="@layout/no_data_view"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/prgrs"
+            layout="@layout/progress_indicator"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

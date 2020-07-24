@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.data.model.CommonResponse
 import com.fidato.inventorymngmnt.data.model.master.ProductVarient
@@ -44,7 +45,7 @@ class AddEditProductVariantViewModel(
         }
     }
 
-    fun textChanged(textChangeComponent: TextChangeComponent) {
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
         Log.d(TAG, "textChanged::$textChangeComponent")
         when (textChangeComponent) {
             TextChangeComponent.PRODUCT_PRICE -> {

@@ -20,7 +20,8 @@
     <fragment
         android:id="@+id/subCategoryFragment"
         android:name="com.fidato.inventorymngmnt.ui.master.fragment.SubCategoryFragment"
-        android:label="@string/fragment_sub_category">
+        android:label="@string/fragment_sub_category"
+        tools:layout="@layout/fragment_sub_category">
         <action
             android:id="@+id/action_subCategoryFragment_to_productsFragment"
             app:destination="@id/productsFragment" />
@@ -31,7 +32,8 @@
     <fragment
         android:id="@+id/productsFragment"
         android:name="com.fidato.inventorymngmnt.ui.products.fragments.ProductsFragment"
-        android:label="@string/fragment_product">
+        android:label="@string/fragment_product"
+        tools:layout="@layout/fragment_products">
         <action
             android:id="@+id/action_productsFragment_to_productDetailFragment"
             app:destination="@id/productDetailFragment" />
@@ -42,29 +44,50 @@
     <fragment
         android:id="@+id/productDetailFragment"
         android:name="com.fidato.inventorymngmnt.ui.products.fragments.ProductDetailFragment"
-        android:label="@string/fragment_product_detail" />
+        android:label="@string/fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.fidato.inventorymngmnt.ui.dashboard.DashboardFragment"
-        android:label="@string/fragment_dashboard">
+        android:label="@string/fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_customerFragment"
+            app:destination="@id/customerFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditCategoryFragment"
-        android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditCategoryFragment" />
+        android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditCategoryFragment"
+        tools:layout="@layout/fragment_add_edit_category" />
     <fragment
         android:id="@+id/addEditSubCategoryFragment"
-        android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditSubCategoryFragment" />
+        android:name="com.fidato.inventorymngmnt.ui.master.fragment.AddEditSubCategoryFragment"
+        tools:layout="@layout/fragment_add_edit_sub_category" />
     <fragment
         android:id="@+id/addEditProductFragment"
-        android:name="com.fidato.inventorymngmnt.ui.products.fragments.AddEditProductFragment" >
+        android:name="com.fidato.inventorymngmnt.ui.products.fragments.AddEditProductFragment"
+        tools:layout="@layout/fragment_add_edit_product">
         <action
             android:id="@+id/action_addEditProductFragment_to_addEditProductVariantFragment"
             app:destination="@id/addEditProductVariantFragment" />
     </fragment>
     <fragment
         android:id="@+id/addEditProductVariantFragment"
-        android:name="com.fidato.inventorymngmnt.ui.products.fragments.AddEditProductVariantFragment" />
+        android:name="com.fidato.inventorymngmnt.ui.products.fragments.AddEditProductVariantFragment"
+        tools:layout="@layout/fragment_add_edit_product_variant" />
+    <fragment
+        android:id="@+id/customerFragment"
+        android:name="com.fidato.inventorymngmnt.ui.customer.fragment.CustomerFragment"
+        android:label="@string/title_customer"
+        tools:layout="@layout/fragment_customer">
+        <action
+            android:id="@+id/action_customerFragment_to_addEditCustomerFragment"
+            app:destination="@id/addEditCustomerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditCustomerFragment"
+        android:name="com.fidato.inventorymngmnt.ui.customer.fragment.AddEditCustomerFragment" />
 </navigation>

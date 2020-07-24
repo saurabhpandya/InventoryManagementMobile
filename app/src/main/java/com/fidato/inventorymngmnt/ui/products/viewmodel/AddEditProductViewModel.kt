@@ -11,6 +11,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.data.model.BaseResponse
 import com.fidato.inventorymngmnt.data.model.CommonResponse
@@ -109,7 +110,7 @@ class AddEditProductViewModel(
         }
     }
 
-    fun textChanged(textChangeComponent: TextChangeComponent) {
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
         when (textChangeComponent) {
             TextChangeComponent.PRODUCT_NAME -> {
                 errPrdctName.postValue("")
@@ -218,14 +219,4 @@ class AddEditProductViewModel(
         }
     }
 
-}
-
-enum class TextChangeComponent {
-    PRODUCT_NAME,
-    PRODUCT_DESC,
-    PRODUCT_SUB_CAT,
-    PRODUCT_PRICE,
-    PRODUCT_QUANTITY,
-    PRODUCT_COLOR,
-    PRODUCT_SIZE
 }

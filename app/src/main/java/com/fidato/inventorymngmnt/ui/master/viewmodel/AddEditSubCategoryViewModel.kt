@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_SUB_CAT
 import com.fidato.inventorymngmnt.constants.Constants.Companion.ERR_SELECT_CAT
@@ -247,6 +248,10 @@ class AddEditSubCategoryViewModel(
             subCategoryList.indexOfFirst { subCategory -> subCategory.id!!.equals(this.subCategory.subCatId) }
         if (selSubCatIndex >= 0)
             setSubCategory(subCategoryList[selSubCatIndex])
+
+    }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
 
     }
 

@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_ID
 import com.fidato.inventorymngmnt.constants.Constants.Companion.BUNDLE_CAT_NAME
@@ -108,6 +109,10 @@ class AddEditCategoryViewModel(application: Application, val masterRepository: M
                 saveCatResponse.value = Resource.error(null, e.localizedMessage)
             }
         }
+    }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
+
     }
 }
 

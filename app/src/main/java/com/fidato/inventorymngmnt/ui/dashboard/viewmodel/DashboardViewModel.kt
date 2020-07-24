@@ -2,6 +2,7 @@ package com.fidato.inventorymngmnt.ui.dashboard.viewmodel
 
 import android.app.Application
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
 import com.fidato.inventorymngmnt.ui.dashboard.adapter.DashboardAdapter
 
@@ -20,6 +21,10 @@ class DashboardViewModel(
         arylstDashboard.add("Customers")
         arylstDashboard.add("Orders")
         return arylstDashboard
+    }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
+
     }
 
 }

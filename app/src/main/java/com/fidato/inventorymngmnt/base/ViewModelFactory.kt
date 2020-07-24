@@ -3,8 +3,12 @@ package com.fidato.inventorymngmnt.base
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.fidato.inventorymngmnt.data.customer.CustomerNetworkDataProvider
+import com.fidato.inventorymngmnt.data.customer.CustomerRepository
 import com.fidato.inventorymngmnt.data.master.MasterNetworkDataProvider
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
+import com.fidato.inventorymngmnt.ui.customer.viewmodel.AddEditCustomerViewModel
+import com.fidato.inventorymngmnt.ui.customer.viewmodel.CustomerViewModel
 import com.fidato.inventorymngmnt.ui.dashboard.viewmodel.DashboardViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditCategoryViewModel
 import com.fidato.inventorymngmnt.ui.master.viewmodel.AddEditSubCategoryViewModel
@@ -19,7 +23,21 @@ class ViewModelFactory<T>(private val dataProvider: T, private val application: 
     ViewModelProvider.AndroidViewModelFactory(application) {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-        if (modelClass.isAssignableFrom(AddEditProductVariantViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(AddEditCustomerViewModel::class.java)) {
+            return AddEditCustomerViewModel(
+                application,
+                CustomerRepository(
+                    dataProvider as CustomerNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(CustomerViewModel::class.java)) {
+            return CustomerViewModel(
+                application,
+                CustomerRepository(
+                    dataProvider as CustomerNetworkDataProvider
+                )
+            ) as T
+        } else if (modelClass.isAssignableFrom(AddEditProductVariantViewModel::class.java)) {
             return AddEditProductVariantViewModel(
                 application,
                 MasterRepository(

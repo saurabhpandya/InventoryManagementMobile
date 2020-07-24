@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.data.model.master.Product
 import com.fidato.inventorymngmnt.data.model.master.ProductVarient
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
@@ -61,6 +62,10 @@ class ProductDetailsViewModel(
     }
 
     fun setProductVarientData(arylstProduct: ArrayList<Product>) {
+
+    }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
 
     }
 

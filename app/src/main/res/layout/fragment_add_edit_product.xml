@@ -12,7 +12,7 @@
             name="product"
             type="com.fidato.inventorymngmnt.data.model.master.Product" />
 
-        <import type="com.fidato.inventorymngmnt.ui.products.viewmodel.TextChangeComponent" />
+        <import type="com.fidato.inventorymngmnt.base.TextChangeComponent" />
 
     </data>
 
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="@={product.name}"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_NAME)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_NAME)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:text="@={product.description}"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_DESC)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_DESC)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +99,7 @@
                         android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:singleLine="true"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_SUB_CAT)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_SUB_CAT)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

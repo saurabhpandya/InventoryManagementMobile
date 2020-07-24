@@ -27,6 +27,8 @@ class Constants {
         const val BUNDLE_EDIT_SUB_CAT = "edit_sub_category"
         const val BUNDLE_EDIT_PRODUCT = "edit_product"
         const val BUNDLE_EDIT_PRODUCT_VARIANT = "edit_product_variant"
+        const val BUNDLE_EDIT_CUSTOMER = "edit_customer"
+        const val BUNDLE_CUSTOMER = "customer"
 
         const val ERR_CAT_NAME = "Enter Category Name"
         const val ERR_SUB_CAT_NAME = "Enter Sub Category Name"
@@ -45,6 +47,12 @@ class Constants {
         const val ERR_PRODUCT_VARIANT_QUANTITY = "Enter quantity"
         const val ERR_PRODUCT_VARIANT_COLOR = "Enter color"
         const val ERR_PRODUCT_VARIANT_SIZE = "Enter size"
+
+        const val ERR_CUSTOMER_NAME = "Enter name"
+        const val ERR_CUSTOMER_MOBILE = "Enter mobile"
+        const val ERR_CUSTOMER_EMAIL = "Enter email"
+        const val ERR_CUSTOMER_PASSWORD = "Enter password"
+
 
     }
 }

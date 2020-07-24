@@ -12,7 +12,7 @@
             name="productVariant"
             type="com.fidato.inventorymngmnt.data.model.master.ProductVarient" />
 
-        <import type="com.fidato.inventorymngmnt.ui.products.viewmodel.TextChangeComponent" />
+        <import type="com.fidato.inventorymngmnt.base.TextChangeComponent" />
 
     </data>
 
@@ -64,7 +64,7 @@
                         android:inputType="numberDecimal"
                         android:singleLine="true"
                         app:text="@={productVariant.price}"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_PRICE)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_PRICE)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:singleLine="true"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_QUANTITY)}"
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_QUANTITY)}"
                         app:textInt="@={productVariant.quantity}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +108,7 @@
                         android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:text="@={productVariant.color}"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_COLOR)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_COLOR)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -130,7 +130,7 @@
                         android:inputType="textCapSentences"
                         android:singleLine="true"
                         android:text="@={productVariant.size}"
-                        app:textAttrChanged="@{() -> vm.textChanged(TextChangeComponent.PRODUCT_SIZE)}" />
+                        app:textAttrChanged="@{() -> vm.onTextChanged(TextChangeComponent.PRODUCT_SIZE)}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

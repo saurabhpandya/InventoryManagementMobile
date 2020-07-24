@@ -8,6 +8,7 @@ import androidx.lifecycle.liveData
 import androidx.recyclerview.widget.RecyclerView
 import com.fidato.inventorymngmnt.R
 import com.fidato.inventorymngmnt.base.BaseViewModel
+import com.fidato.inventorymngmnt.base.TextChangeComponent
 import com.fidato.inventorymngmnt.constants.Constants
 import com.fidato.inventorymngmnt.data.model.master.Product
 import com.fidato.inventorymngmnt.data.repository.MasterRepository
@@ -96,6 +97,10 @@ class ProductViewModel(
     fun deleteProduct(position: Int) {
         val product = arylstProduct[position]
         Log.d(TAG, "Delete Underlay Button clicked for : ${product.name}")
+    }
+
+    override fun onTextChanged(textChangeComponent: TextChangeComponent) {
+
     }
 
 }

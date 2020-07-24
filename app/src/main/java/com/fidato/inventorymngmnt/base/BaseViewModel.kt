@@ -20,4 +20,22 @@ open class BaseViewModel(application: Application) : AndroidViewModel(applicatio
         return errMsg
     }
 
+    open fun onTextChanged(textChangeComponent: TextChangeComponent) {
+
+    }
+
+}
+
+enum class TextChangeComponent {
+    PRODUCT_NAME,
+    PRODUCT_DESC,
+    PRODUCT_SUB_CAT,
+    PRODUCT_PRICE,
+    PRODUCT_QUANTITY,
+    PRODUCT_COLOR,
+    PRODUCT_SIZE,
+    CUSTOMER_NAME,
+    CUSTOMER_EMIAL,
+    CUSTOMER_MOBILE,
+    CUSTOMER_PASSWORD
 }
